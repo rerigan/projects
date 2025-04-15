@@ -1,94 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tags</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio - Rodolfo Rerigan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+a {
+ color: #00bcd4;
+}
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .project a {
+      display: block;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: #00bcd4;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+
+    .project a:hover {
+      background-color: #2a2a2a;
+    }
+footer {
+
+      padding: 1rem;
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
-    <header id="topo">
-        Header
-    </header>
-    <nav>
-        <ul>
-            <li>
-                <a href="#">Roupas</a>
-                <ul>
-                    <li>
-                        <a href="#">Camisetas</a>
-                    </li>
-                    <li>
-                        <a href="#">Calças</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#">Acessórios</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <!--Comentário-->
-        <article>
-            <h1>Tag</h1>
-            <h2>Tag 2</h2>
-            <h3>Tag 3</h3>
-            <h4>Tag 4</h4>
-            <h5>Tag 5</h5>
-            <h6>Tag 6</h6>
-        </article>
-        <article>
-            <ol>
-                <li>Primeiro</li>
-                <li>Segundo</li>
-                <li>Terceiro</li>
-                <li>Quarto</li>
-                <li>Quinto</li>
-            </ol>
-            <ul>
-                <li>Primeiro
-                    <ul>
-                        <li>Branco</li>
-                    </ul>
-                </li>
-                <li>Segundo</li>
-                <li>Terceiro</li>
-                <li>Quarto</li>
-                <li>Quinto</li>
-            </ul>
-        </article>
-        <article>
-            <a href="0-intro.html">Link Relativo</a> <br>
-            <a href="http://keep.google.com/" target="_blank">Link Absoluto</a> <br>
-            <a href="#topo">Link Âncora</a> <br>
-            <a href="mailto:cosnnum@gmail.com">E-mail</a>
-        </article>
-        <article>
-            <p><a href="0-intro.html">Lorem ipsum dolor sit amet </a> consectetur adipisicing elit. Praesentium <br> eum
-                eaque delectus quia. Amet, sit commodi et expedita ipsum error sed aut perferendis dolorum ipsam, earum
-                sint quos omnis minima!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint consequatur voluptates dolores doloremque
-                ipsum molestiae esse ad hic animi corporis, impedit pariatur accusamus, repellat ratione quis aut
-                quibusdam, asperiores sunt.</p>
-        </article>
-        <article>
-            <img src="assets/images/euae.png" width="300" alt="Um homem tirando selfie.">
-        </article>
-        <article><iframe width="560" height="315" src="https://www.youtube.com/embed/rDAAs3Ka3Mo?si=4QMFeRHmAiY-Viqh"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></article>
-    </main>
-    <footer>
-
-    </footer>
-
+  <header>
+    <h1>Rodolfo Rerigan</h1>
+  </header>
+  <main>
+    <h2>Projetos</h2>
+    <div class="projects">
+      <div class="project"><a href="1.html">1</a></div>
+      <div class="project"><a href="2.html">2</a></div>
+      <div class="project"><a href="3.html">3</a></div>
+      <div class="project"><a href="4.html">4</a></div>
+      <div class="project"><a href="5.html">5</a></div>
+      <div class="project"><a href="6.html">6</a></div>
+      <div class="project"><a href="7.html">7</a></div>
+      <div class="project"><a href="8.html">8</a></div>
+      <div class="project"><a href="9.html">9</a></div>
+      <div class="project"><a href="10.html">10</a></div>
+    </div>
+  </main>
+<footer><h4>Feito por <a href="https://www.linkedin.com/in/rerigan" target="_blank">Rerigan.</a></h4></footer>
 </body>
-
 </html>
