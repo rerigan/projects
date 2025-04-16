@@ -1,0 +1,7 @@
+/* Oi */
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
+h1 {
+    color: rgb(0, 255, 0);
+    font-family: Arial, Helvetica, sans-serif;
+}

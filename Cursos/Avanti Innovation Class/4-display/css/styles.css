@@ -1,0 +1,24 @@
+a{ 
+    background-color: white;
+    padding: 30px;
+    display:inline-block;
+}
+
+.hide {
+    display:none;
+}
+
+.content-flex {
+    display:flex;
+    flex-direction:column;
+    width:1280px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 400px;
+    align-items: center;
+}
+
+.content-flex p{
+    padding: 30px;
+    width: 250px;
+}
