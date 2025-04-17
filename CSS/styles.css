@@ -143,3 +143,10 @@ ul {
   list-style-type: none;
   padding-left: 0px;
 }
+#by{
+  display:flex;
+  text-align:center;
+  justify-content:center;
+  margin:0;
+  padding:0;
+}
