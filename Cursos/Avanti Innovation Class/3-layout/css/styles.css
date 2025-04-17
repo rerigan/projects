@@ -16,7 +16,6 @@ a {
 }
 /* Classes gerais */
 .container {
-    width: 100%;
     margin: auto;
 }
 
@@ -84,9 +83,9 @@ nav ul li a:hover{
 main {
     padding:10px 0;
     flex-wrap:wrap;
-    width: 100%;
-    max-width: 100%;
+    max-width: 50rem;
     box-sizing: border-box;
+    width:80%;
     
 }
 
