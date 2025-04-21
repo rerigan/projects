@@ -9,7 +9,7 @@ const numero3 = 3
 // < menor 
 // >= maior igual 
 // <= menor igual
-const resultado = numero1 > numero2
+const resultado = numero1 >= numero2
 
 
 console.log(`O resultado é ${resultado}`)
