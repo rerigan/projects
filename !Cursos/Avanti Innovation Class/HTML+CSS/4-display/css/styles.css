@@ -1,0 +1,40 @@
+a{ 
+    background-color: white;
+    padding: 30px;
+    display:inline-block;
+}
+
+.hide {
+    display:none;
+}
+
+.content-flex {
+    display:flex;
+    width:1280px;
+    justify-content: start;
+    flex-wrap: wrap;
+    height: 500px;
+    align-items: center;
+}
+
+.content-flex p{
+    padding: 30px;
+    width: 250px;
+}
+
+/* Pseudo classe */
+
+.content-flex p:first-child{
+    font-weight:bold;
+}
+
+/* Pseudo element */
+
+.content-flex p::before{
+    content:"conteúdo antes";
+    width:20px;
+    height:20px;
+    background-color: red;
+    display:inline-block;
+    margin-right:20px;
+}

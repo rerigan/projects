@@ -1,0 +1,60 @@
+img{
+    max-width: 100%;
+}
+
+header {
+    background: red;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul li {
+    background: black;
+    color: red;
+    margin: 3px 0;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.paragrafo-destaque-desktop {
+    display: none;
+    color: blue;
+}
+@media (min-width:760px){
+    header{
+        background-color:green;
+    }
+}
+/* MOBILE FIRST - PRIMEIRO PENSA NO CELULAR, DEPOIS USA O MIN WIDTH PRA ADAPTAR O DESKTOP */
+@media (min-width:850px) {
+    header {
+        background-color: rgb(247, 7, 255);
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    nav ul li {
+        margin: 15px;
+    }
+
+    header,
+    nav,
+    main {
+        width: 1280px;
+        margin: auto;
+    }
+
+    .paragrafo-destaque-desktop {
+        display: block;
+        color: blue;
+    }
+
+}
