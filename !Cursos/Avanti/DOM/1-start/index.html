@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <button onclick="alert('Abrindo janela pelo JS')">Clique aqui</button>
+    <button id="abreAlert">Abrir Janela</button>
+    <button id="abreVinculado">Abre código vinculado</button>
+
+    <script>
+      const btabreAlert=document.querySelector("#abreAlert")
+      btabreAlert.addEventListener("click", ()=>{
+        alert("Abrindo janela pelo script")
+      })
+    </script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
