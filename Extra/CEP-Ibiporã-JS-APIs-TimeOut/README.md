@@ -1,0 +1,3 @@
+Esse projeto foi criado com auxílio em grande parte do ChatGPT, pois ainda não tinha conhecimento sólido para implementar uma API e modificar a maneira que ela é lida pelo meu software, além de outros conhecimentos (como o botão de copiar, por exemplo, e a estilização em Tailwind CSS).
+
+A partir disso, com o projeto concluído e satisfatório, vou pedir pra ele dissecar todo o código, seção por seção, para me explicar o porquê de cada linha de código para me explicar e me treinar em como eu faria isso sozinho.
