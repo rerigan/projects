@@ -6,5 +6,5 @@ O objetivo desse site é auxiliar os moradores da cidade de Ibiporã, que recent
 
 A partir disso, com o projeto concluído e satisfatório, vou pedir pra ele dissecar todo o código, seção por seção, para me explicar o porquê de cada linha de código para me explicar e me treinar em como eu faria isso sozinho.
 <p align="center">
-  <img src="./assets/preview.png" alt="Preview do site CEP Ibipora">
+  <a href="https://rerigan.vercel.app/Extra/CEP-Ibipor%C3%A3-JS-APIs-TimeOut/index.html" target="_blank"><img src="./assets/preview.png" alt="Preview do site CEP Ibipora"></a>
 </p>
