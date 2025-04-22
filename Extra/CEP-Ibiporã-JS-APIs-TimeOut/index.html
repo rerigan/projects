@@ -1,90 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buscar CEP em Ibiporã</title>
-  <script defer>
-    async function buscarCep() {
-      const rua = document.getElementById("rua").value;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar CEP em Ibiporã</title>
+    <script defer>
+      async function buscarCep() {
+        const rua = document.getElementById("rua").value;
 
-      if (!rua) {
-        alert("Preencha o nome da rua!");
-        return;
-      }
-
-      const url = `https://viacep.com.br/ws/PR/Ibipora/${rua}/json/`;
-      const resultadoDiv = document.getElementById("resultado");
-      resultadoDiv.innerHTML = "Buscando...";
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.length === 0 || data.erro) {
-          resultadoDiv.innerHTML = "Nenhum resultado encontrado.";
+        if (!rua) {
+          alert("Preencha o nome da rua!");
           return;
         }
 
-        resultadoDiv.innerHTML = data.map(item => `
-          <div class="p-2 border-b">
-            <strong style="font-size:30px">CEP: ${item.cep}</strong><br/>
-            <strong>Logradouro:</strong> ${item.logradouro}<br/>
-            <strong>Bairro:</strong> ${item.bairro}<br/>
-            <strong>Cidade:</strong> ${item.localidade} - ${item.uf}
-          </div>
-        `).join("");
-      } catch (err) {
-        resultadoDiv.innerHTML = "Erro ao buscar dados.";
-        console.error(err);
-      }
-    }
+        const url = `https://viacep.com.br/ws/PR/Ibipora/${rua}/json/`;
+        const resultadoDiv = document.getElementById("resultado");
+        resultadoDiv.innerHTML = "Buscando...";
 
-    window.onload = () => {
-      const inputRua = document.getElementById("rua");
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
 
-      inputRua.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          buscarCep(); 
-        }
-      });
-    };
-    let timeout;
+          if (data.length === 0 || data.erro) {
+            resultadoDiv.innerHTML = "Nenhum resultado encontrado.";
+            return;
+          }
 
-function handleInput() {
-  // Limpa o timeout anterior
-  clearTimeout(timeout);
-
-  // Define um novo timeout de 3 segundos
-  timeout = setTimeout(() => {
-    buscarCep();  // Chama a função de buscar CEP
-  }, 2000);  // 2000 ms = 2 segundos
-}
-
-window.onload = () => {
-  const inputRua = document.getElementById("rua");
-
-  // Evento 'input' chama handleInput sempre que o usuário digita
-  inputRua.addEventListener("input", handleInput);
-};
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-gray-200 flex flex-col justify-center items-center min-h-[100svh]">
-
-  <!-- Container central -->
-  <div class="w-full max-w-xl p-6 rounded-xl text-center">
-    <h1 class="text-2xl font-bold mb-4" style="padding-bottom: 2rem">Buscar CEP em Ibiporã</h1>
-    <input id="rua" type="text" placeholder="Parte do nome da rua (ex: Estudantes)" class="w-full p-2 border rounded-3xl mb-4 bg-gray-700 text-white" />
-
-    <div id="resultado" class="mt-4 text-center"></div>
+          resultadoDiv.innerHTML = data
+            .map(
+              (item) => `
+  <div class="p-4 border-b border-gray-700">
+    <div class="flex items-center justify-between bg-gray-800 p-3 rounded-xl mb-2">
+      <span class="text-xl font-bold text-white">${item.cep}</span>
+     <button onclick="copiarCep('${item.cep}')" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm">
+  Copiar
+</button>
+    </div>
+    <div class="text-left">
+      <strong>Logradouro:</strong> ${item.logradouro}<br/>
+      <strong>Bairro:</strong> ${item.bairro}<br/>
+      <strong>Cidade:</strong> ${item.localidade} - ${item.uf}
+    </div>
   </div>
+`
+            )
+            .join("");
+        } catch (err) {
+          resultadoDiv.innerHTML = "Erro ao buscar dados.";
+          console.error(err);
+        }
+      }
 
-  <!-- Rodapé -->
-  <footer class="mt-6 text-gray-400 text-sm">
-    Feito por <a href="https://github.com/rerigan" style="color: #b1b3ff;" target="_blank">Rerigan</a>
-  </footer>
+      window.onload = () => {
+        const inputRua = document.getElementById("rua");
 
-</body>
+        inputRua.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            buscarCep();
+          }
+        });
+      };
+      let timeout;
+
+      function handleInput() {
+        // Limpa o timeout anterior
+        clearTimeout(timeout);
+
+        // Define um novo timeout de 3 segundos
+        timeout = setTimeout(() => {
+          buscarCep(); // Chama a função de buscar CEP
+        }, 2000); // 2000 ms = 2 segundos
+      }
+
+      window.onload = () => {
+        const inputRua = document.getElementById("rua");
+
+        // Evento 'input' chama handleInput sempre que o usuário digita
+        inputRua.addEventListener("input", handleInput);
+      };
+      function copiarCep(cep) {
+  navigator.clipboard.writeText(cep).then(() => {
+    const toast = document.getElementById("copiadoToast");
+    toast.style.opacity = "1";
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+    }, 2000);
+  });
+}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <div
+    id="copiadoToast"
+    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-xl shadow-md text-sm opacity-0 transition-opacity duration-300 pointer-events-none"
+  >
+    CEP copiado!
+  </div>
+  <body
+    class="bg-gray-900 text-gray-200 flex flex-col justify-center items-center min-h-[100svh]"
+  >
+    <!-- Container central -->
+    <div class="w-full max-w-xl p-6 rounded-xl text-center">
+      <h1 class="text-2xl font-bold mb-4" style="padding-bottom: 2rem">
+        Buscar CEP em Ibiporã
+      </h1>
+      <input
+        id="rua"
+        type="text"
+        placeholder="Parte do nome da rua (ex: Estudantes)"
+        class="w-full p-2 border rounded-3xl mb-4 bg-gray-700 text-white"
+      />
+
+      <div id="resultado" class="mt-4 text-center"></div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="mt-6 text-gray-400 text-sm">
+      Feito por
+      <a
+        href="https://github.com/rerigan"
+        style="color: #b1b3ff"
+        target="_blank"
+        >Rerigan</a
+      >
+    </footer>
+  </body>
 </html>
