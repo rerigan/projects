@@ -4,7 +4,7 @@ let timeout;
 // Função chamada a cada digitação com debounce
 function handleInput() {
   clearTimeout(timeout);
-  timeout = setTimeout(buscarCep, 2000); // 2 segundos de espera
+  timeout = setTimeout(buscarCep, 1500); // segundos de espera
 }
 
 // Função principal de busca
