@@ -93,8 +93,8 @@ a:visited {
 }
 
 .orbit-card img {
-  object-fit: cover;
-  object-position: left;
+  object-fit:fill;
+  scale: 0.6;
 }
 
 .orbit-card:hover {
