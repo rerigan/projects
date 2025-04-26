@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "tailwindcss": "^4.1.4"
+  },
+  "name": "cepibipora",
+  "version": "1.0.0",
+  "description": "Um site leve e altamente usável para facilitar a busca de CEPs das ruas de Ibiporã, após a recente divisão de códigos postais. A busca é disparada automaticamente quando o usuário fica 2 segundos sem digitar, sem necessidade de botão. Inclui botão de “Copiar CEP” e remove o phantom scrolling no celular, oferecendo uma experiência fluida.",
+  "main": "index.js",
+  "scripts": {
+    "tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./src/styles.css --watch",
+    "build": "npm run tailwind --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
