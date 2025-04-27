@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Devlinks</title>
   </head>
-  <video id="background" autoplay loop muted playsinline poster="assets/1.mp4">
+  <video id="background" autoplay loop muted playsinline poster="assets/1.jpg">
     <source src="assets/1.mp4" type="video/mp4" />
     Your browser does not support the video tag. Please consider using a modern
     browser.
@@ -68,12 +68,6 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-<script> video.requestVideoFrameCallback(() => {
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext('2d').drawImage(video, 0, 0);
-  video.poster = canvas.toDataURL();
-  // iniciar autoplay ou revelar o vídeo
-});</script>
+<script> </script>
   </body>
 </html>
