@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+body {
+  background: url(../assets/bg-mobile.jpg) no-repeat top center/cover;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#container {
+  width: 350px;
+  margin: auto;
+}
+#profile img {
+  border-radius: 100%;
+  margin-top: 20px;
+}
+
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  color: white;
+  margin-top: 8px;
+}
+
+/* Links */
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+ul li a {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  font-weight: 500;
+  transition: background 200ms;
+}
+
+ul li a:hover {
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.5);
+}
+#socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-size: 29px;
+}
+#socials a {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 15px 1px;
+  border-radius: 50%;
+}
+
+#socials a:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s;
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  font-weight: 500;
+  color: white;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  background-color: white;
+  border-radius: 1rem;
+  transition: all 0.2ms;
+  line-height: 50px;
+}
+
+footer a:hover {
+  color: black;
+}
