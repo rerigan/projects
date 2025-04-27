@@ -9,12 +9,12 @@
   height: 100vh;
   object-fit: cover;
   position: fixed;
-  object-position: left;
   z-index: -1;
+  opacity: 50%;
 }
 
 body {
-  background: url(../assets/bg-mobile.jpg) no-repeat top center/cover;
+  background: #000;
   min-height: 100vh;
 }
 
@@ -58,7 +58,7 @@ ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
@@ -71,7 +71,7 @@ ul li a {
 
 ul li a:hover {
   border: 1px solid white;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 1);
 }
 #socials {
   display: flex;
@@ -93,7 +93,6 @@ ul li a:hover {
 #socials a:hover {
   background: rgba(255, 255, 255, 0.5);
   transition: background 0.2s;
-  color: black;
 }
 
 footer {
@@ -104,22 +103,17 @@ footer {
 }
 footer a {
   text-decoration: none;
-  color: white;
-  padding: 5px;
-  background-color: white;
-  border-radius: 1rem;
+  color: transparent;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 100px;
   transition: all 0.1s;
-  line-height: 50px;
-  opacity: 30%;
+  line-height: 60px;
+  opacity: 100%;
+  border: 1px solid white;
 }
 
 footer a:hover {
   color: black;
-  opacity: 100%;
-}
-
-@media (min-width: 768px) {
-  body {
-    background: url(../assets/bg-desktop.jpg) no-repeat center center/cover;
-  }
+  background-color: white;
 }
