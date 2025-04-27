@@ -68,5 +68,12 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+<script> video.requestVideoFrameCallback(() => {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  video.poster = canvas.toDataURL();
+  // iniciar autoplay ou revelar o vídeo
+});</script>
   </body>
 </html>
