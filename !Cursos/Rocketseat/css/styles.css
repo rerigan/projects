@@ -98,7 +98,7 @@ footer a {
   padding: 5px;
   background-color: white;
   border-radius: 1rem;
-  transition: all 0.2ms;
+  transition: all 0.1s;
   line-height: 50px;
 }
 
