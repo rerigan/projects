@@ -4,6 +4,14 @@
   box-sizing: border-box;
   max-width: 100%;
 }
+#background {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  object-position: left;
+  z-index: -1;
+}
 
 body {
   background: url(../assets/bg-mobile.jpg) no-repeat top center/cover;
@@ -79,11 +87,13 @@ ul li a:hover {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 15px 1px;
   border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 #socials a:hover {
   background: rgba(255, 255, 255, 0.5);
   transition: background 0.2s;
+  color: black;
 }
 
 footer {
@@ -100,10 +110,12 @@ footer a {
   border-radius: 1rem;
   transition: all 0.1s;
   line-height: 50px;
+  opacity: 30%;
 }
 
 footer a:hover {
   color: black;
+  opacity: 100%;
 }
 
 @media (min-width: 768px) {
