@@ -105,3 +105,9 @@ footer a {
 footer a:hover {
   color: black;
 }
+
+@media (min-width: 768px) {
+  body {
+    background: url(../assets/bg-desktop.jpg) no-repeat center center/cover;
+  }
+}

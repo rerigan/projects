@@ -92,7 +92,7 @@ a:visited {
 }
 
 .orbit-card img {
-  object-fit:fill;
+  object-fit: fill;
   scale: 0.6;
 }
 
@@ -130,14 +130,14 @@ a:visited {
   margin: 10px 0 0;
   font-size: 14px;
   line-height: 1.4;
+  justify-content: space-evenly;
 }
 
 ul {
   list-style-type: none;
   padding-left: 0px;
-  font-weight:600;
-  margin:5px 0;
-  
+  font-weight: 600;
+  margin: 5px 0;
 }
 #by {
   display: flex;
@@ -147,4 +147,3 @@ ul {
   margin: 0;
   padding: 0;
 }
-
