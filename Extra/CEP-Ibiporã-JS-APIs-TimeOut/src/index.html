@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link rel="icon" href="assets/icon.ico" type="image/x-icon">
-  <title>Buscar CEP em Ibiporã</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/icon.ico" type="image/x-icon" />
+    <title>Buscar CEP em Ibiporã</title>
 
-  <!-- Arquivo CSS local (com Tailwind) -->
-  <link rel="stylesheet" href="css/styles.css" />
+    <!-- Arquivo CSS local (com Tailwind) -->
+    <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- Script JS separado com defer -->
-  <script defer src="js/script.js"></script>
-</head>
-<body class="text-gray-200 bg-gray-900 flex items-center justify-center min-h-screen">
+    <!-- Script JS separado com defer -->
+    <script defer src="js/script.js"></script>
+  </head>
+  <body
+    class="text-gray-200 bg-gray-900 flex items-center justify-center min-h-screen"
+  >
+    <main class="w-full max-w-md p-6 rounded-xl">
+      <h1 class="text-2xl font-bold mb-10 text-center">
+        Buscar CEP em Ibiporã
+      </h1>
 
-  <main class="w-full max-w-md p-6 rounded-xl">
-    <h1 class="text-2xl font-bold mb-10 text-center">Buscar CEP em Ibiporã</h1>
+      <input
+        id="rua"
+        type="text"
+        placeholder="Digite parte do nome da rua (Ex: Estudantes)"
+        class="w-full p-3 rounded-lg mb-4 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
 
-    <input
-      id="rua"
-      type="text"
-      placeholder="Digite parte do nome da rua (Ex: Estudantes)"
-      class="w-full p-3 rounded-lg mb-4 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-
-    <div id="resultado" class="space-y-4"></div>
-  </main>
-  <div id="footclass">
-  <footer class="footerclass mt-6 text-gray-400 text-sm pb-10">
-    <span>Desenvolvido por <a href="https://www.instagram.com/reri.gan" style="color: #9e9cb4;" target="_blank"><strong>Rerigan</strong></a></span>
-  </footer>
-</div>
-
-</body>
+      <div id="resultado" class="space-y-4"></div>
+    </main>
+    <div id="footclass">
+      <footer class="footerclass mt-6 text-gray-400 text-sm pb-10">
+        <span
+          >Desenvolvido por
+          <a
+            href="https://www.instagram.com/reri.gan"
+            style="color: #9e9cb4"
+            target="_blank"
+            ><strong>Rerigan</strong></a
+          ></span
+        >
+      </footer>
+    </div>
+  </body>
 </html>
