@@ -8,7 +8,7 @@ body {
   font-family: Arial, sans-serif;
 }
 body * {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s;
 }
 
 header {
@@ -94,6 +94,12 @@ footer {
 .orbit-card a {
   text-decoration: none;
 }
+.orbit-card p {
+  color: transparent;
+}
+.orbit-card a {
+  color: transparent;
+}
 .orbit-card img {
   object-fit: cover;
   width: 100%;
@@ -111,12 +117,18 @@ footer {
   box-sizing: border-box;
   background-color: transparent;
   color: transparent;
-  display: none;
+  display: block;
 }
 
 .orbit-card:hover .orbit-card-content {
-  display: block;
   color: white;
+  transition: all 0.2s;
+}
+.orbit-card:hover .orbit-card-content p {
+  color: white;
+}
+.orbit-card:hover .orbit-card-content a {
+  color: rgb(2, 255, 242);
 }
 .orbit-card:hover img {
   opacity: 0%;
@@ -151,15 +163,9 @@ ul {
   padding: 0;
 }
 
+.orbit-card-content a:hover {
+  color: white !important;
+}
 a:hover {
   color: #ffffff;
-}
-
-#background {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: fixed;
-  z-index: -1;
-  opacity: 50%;
 }
