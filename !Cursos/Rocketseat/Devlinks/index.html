@@ -8,13 +8,18 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-
+    <link rel="icon" href="assets/icon.ico" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Devlinks</title>
   </head>
   <video id="background" muted playsinline>
     <source src="assets/1.mp4" type="video/mp4" />
+    Your browser does not support the video tag. Please consider using a modern
+    browser.
+  </video>
+  <video id="background2" class="backgroundplay" muted playsinline>
+    <source src="assets/2.mp4" type="video/mp4" />
     Your browser does not support the video tag. Please consider using a modern
     browser.
   </video>
@@ -44,21 +49,29 @@
       </div>
 
       <ul>
-        <li><a target="_blank" href="#">Sobre mim</a></li>
+        <li><a target="_blank" href="#" class="buttons">Sobre mim</a></li>
         <li>
-          <a target="_blank" href="https://tinyurl.com/rericv"
+          <a
+            target="_blank"
+            href="https://tinyurl.com/rericv"
+            class="buttons"
+            id="button"
             >Currículo Online</a
           >
         </li>
         <li>
-          <a target="_blank" href="https://rerigan.vercel.app/">Portfólio</a>
+          <a target="_blank" href="https://rerigan.vercel.app/" class="buttons"
+            >Portfólio</a
+          >
         </li>
-        <li><a target="_blank" href="#">Eita</a></li>
+        <li><a target="_blank" href="#" class="buttons">Eita</a></li>
       </ul>
     </div>
     <footer>
       Desenvolvido por <br />
-      <a href="#"><em>Rerigan</em></a>
+      <a href="#" id="themechange" onclick="toggleHtmlClass()"
+        ><em>Rerigan</em></a
+      >
     </footer>
 
     <script
@@ -71,6 +84,14 @@
     ></script>
     <script>
       const video = document.getElementById("background");
+      const video2 = document.getElementById("background2");
+      video2.addEventListener("ended", () => {
+        setTimeout(() => {
+          video2.currentTime = 0; // Reset to the start
+          video2.play();
+        }, 1000); // 1 second pause
+      });
+      video2.play();
 
       video.addEventListener("ended", () => {
         setTimeout(() => {
@@ -81,6 +102,28 @@
 
       // Start playing when page loads
       video.play();
+      let elements = document.getElementsByClassName("buttons");
+
+      document
+        .getElementById("themechange")
+        .addEventListener("click", function () {
+          for (let i = 0; i < elements.length; i++) {
+            elements[i].classList.toggle("fundobotao");
+          }
+
+          document
+            .getElementById("background2")
+            .classList.toggle("backgroundchange");
+          document
+            .getElementsByClassName("buttons")
+            .classList.toggle("fundobotao");
+          document.getElementById("background").classList.toggle("hidden");
+        });
+    </script>
+    <script>
+      function toggleHtmlClass() {
+        document.documentElement.classList.toggle("light");
+      }
     </script>
   </body>
 </html>

@@ -4,15 +4,51 @@
   box-sizing: border-box;
   max-width: 100%;
 }
+
+:root {
+  --text-color: white;
+  --make-it-whiter: black;
+  --make-it-black: white;
+  --stroke-color: rgba(255, 255, 255, 0.2);
+  --button-color: rgba(0, 0, 0, 1);
+  --whitelight: white;
+  --socialshover: rgba(255, 255, 255, 0.5);
+}
+
+.light {
+  --text-color: black;
+  --make-it-whiter: white;
+  --make-it-black: black;
+  --stroke-color: black;
+  --stroke-color-highlight: rgba(255, 255, 255, 0.7);
+  --button-color: rgba(97, 97, 97, 0.5);
+  --whitelight: white;
+  --socialshover: rgba(0, 0, 0, 0.5);
+}
+
 #background {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   position: fixed;
-  z-index: -1;
+  z-index: -2;
   opacity: 50%;
 }
+#background2 {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  z-index: -1;
+  opacity: 0%;
+}
+.backgroundchange#background2 {
+  opacity: 100%;
+}
 
+.hidden {
+  opacity: 0%;
+}
 body {
   background: #000;
   min-height: 100vh;
@@ -39,7 +75,7 @@ body {
 #profile p {
   font-weight: 500;
   line-height: 24px;
-  color: white;
+  color: var(--text-color);
   margin-top: 8px;
 }
 
@@ -60,7 +96,7 @@ ul li a {
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--stroke-color);
   border-radius: 8px;
   color: white;
   -webkit-backdrop-filter: blur(4px);
@@ -70,8 +106,9 @@ ul li a {
 }
 
 ul li a:hover {
-  border: 1px solid white;
-  background: rgba(0, 0, 0, 1);
+  border: 1px solid var(--text-color);
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--whitelight);
 }
 #socials {
   display: flex;
@@ -91,15 +128,16 @@ ul li a:hover {
 }
 
 #socials a:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--socialshover);
   transition: background 0.2s;
+  color: white;
 }
 
 footer {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
   font-weight: 500;
-  color: white;
+  color: var(--text-color);
 }
 footer a {
   text-decoration: none;
@@ -110,10 +148,10 @@ footer a {
   transition: all 0.1s;
   line-height: 60px;
   opacity: 100%;
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
 }
 
 footer a:hover {
-  color: black;
-  background-color: white;
+  color: var(--make-it-whiter);
+  background-color: var(--make-it-black);
 }
