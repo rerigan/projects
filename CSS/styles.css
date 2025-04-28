@@ -1,9 +1,17 @@
 /* Cards por @Luancss */
 
+#background {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  z-index: -1;
+  opacity: 50%;
+}
 body {
   margin: 0;
   padding: 0;
-  background-color: #121212;
+  background-color: #000000;
   color: #ffffff;
   font-family: Arial, sans-serif;
 }
@@ -92,7 +100,8 @@ footer {
 }
 .orbit-card a {
   text-decoration: none;
-  padding: 10px;
+  padding-top: 0;
+  margin-top: 0;
   display: inline-flex;
   color: transparent;
   font-weight: bold;
@@ -118,19 +127,21 @@ footer {
   box-sizing: border-box;
   background-color: transparent;
   color: transparent;
-  display: block;
-  flex-wrap: wrap;
+  opacity: 0%;
+  pointer-events: none;
 }
 
 .orbit-card:hover .orbit-card-content {
   color: white;
   transition: all 0.2s;
+  opacity: 100%;
 }
 .orbit-card:hover .orbit-card-content p {
   color: white;
 }
 .orbit-card:hover .orbit-card-content a {
   color: rgb(2, 255, 242);
+  pointer-events: auto;
 }
 .orbit-card:hover img {
   opacity: 0%;

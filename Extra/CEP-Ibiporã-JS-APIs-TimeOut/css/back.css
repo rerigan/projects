@@ -1,0 +1,29 @@
+#background {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  z-index: -1;
+  opacity: 50%;
+}
+
+body {
+  background-color: black;
+}
+
+#rua {
+  background-color: black;
+  opacity: 0.5;
+  border: 1 solid white;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+#footclass a:hover {
+  color: white !important;
+  transition: all 0.2s;
+}
+
+#cep {
+  background-color: rgba(0, 0, 0, 0.5);
+}

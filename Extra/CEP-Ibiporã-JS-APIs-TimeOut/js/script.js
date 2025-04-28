@@ -42,7 +42,7 @@ function renderizarResultado(data) {
 
   resultadoDiv.innerHTML = data.map(item => `
     <div class="p-4 border-b border-gray-700">
-      <div class="flex items-center justify-between bg-gray-800 p-3 rounded-xl mb-2">
+      <div id="cep" class="flex items-center justify-between p-3 rounded-xl mb-2">
         <span class="text-xl font-bold text-white">${item.cep}</span>
         <button onclick="navigator.clipboard.writeText('${item.cep}')" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 hover:cursor-pointer text-sm">
           Copiar
