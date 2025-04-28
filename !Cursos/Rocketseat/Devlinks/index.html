@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Devlinks</title>
   </head>
-  <video id="background" autoplay loop muted playsinline>
+  <video id="background" muted playsinline>
     <source src="assets/1.mp4" type="video/mp4" />
     Your browser does not support the video tag. Please consider using a modern
     browser.
@@ -53,7 +53,7 @@
         <li>
           <a target="_blank" href="http://rerigan.vercel.app/">Portfólio</a>
         </li>
-        <li><a target="_blank" href="#">Sexo</a></li>
+        <li><a target="_blank" href="#">Eita</a></li>
       </ul>
     </div>
     <footer>
@@ -69,5 +69,18 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+    <script>
+      const video = document.getElementById("background");
+
+      video.addEventListener("ended", () => {
+        setTimeout(() => {
+          video.currentTime = 0; // Reset to the start
+          video.play();
+        }, 1000); // 1 second pause
+      });
+
+      // Start playing when page loads
+      video.play();
+    </script>
   </body>
 </html>

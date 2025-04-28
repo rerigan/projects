@@ -8,6 +8,26 @@
   <title>Portfólio - Rodolfo Rerigan</title>
 <link rel="icon" href="assets/icon.ico" type="image/x-icon">
 <style>.orbit-card img{width: 350px; height: 220px;}</style>
+<script>
+  const video = document.getElementById('background');
+
+  let playCount = 0;
+  const pauseDuration = 3000; // 3 seconds
+
+  video.addEventListener('ended', () => {
+    playCount++;
+    if (playCount === 2) {
+      video.pause();
+      setTimeout(() => {
+        video.play();
+        // After resuming, you can let it loop forever
+        video.loop = true;
+      }, pauseDuration);
+    } else {
+      video.play(); // Replay immediately after first end
+    }
+  });
+</script>
 </head>
 <body>
   <video id="background" autoplay loop muted playsinline>
@@ -19,6 +39,7 @@
     <h1>Rodolfo Rerigan</h1>
   </header>
   <main>
+    
 
     <div class="projects">
       <div class="orbit-card firstcard">
