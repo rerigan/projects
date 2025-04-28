@@ -92,13 +92,15 @@ footer {
 }
 .orbit-card a {
   text-decoration: none;
+  padding: 10px;
+  display: inline-flex;
+  color: transparent;
+  font-weight: bold;
 }
 .orbit-card p {
   color: transparent;
 }
-.orbit-card a {
-  color: transparent;
-}
+
 .orbit-card img {
   object-fit: cover;
   width: 100%;
