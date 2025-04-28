@@ -12,6 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Devlinks</title>
+    <script defer src="script.js"></script>
   </head>
   <video id="background" muted playsinline>
     <source src="assets/1.mp4" type="video/mp4" />
@@ -82,48 +83,5 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script>
-      const video = document.getElementById("background");
-      const video2 = document.getElementById("background2");
-      video2.addEventListener("ended", () => {
-        setTimeout(() => {
-          video2.currentTime = 0; // Reset to the start
-          video2.play();
-        }, 1000); // 1 second pause
-      });
-      video2.play();
-
-      video.addEventListener("ended", () => {
-        setTimeout(() => {
-          video.currentTime = 0; // Reset to the start
-          video.play();
-        }, 1000); // 1 second pause
-      });
-
-      // Start playing when page loads
-      video.play();
-      let elements = document.getElementsByClassName("buttons");
-
-      document
-        .getElementById("themechange")
-        .addEventListener("click", function () {
-          for (let i = 0; i < elements.length; i++) {
-            elements[i].classList.toggle("fundobotao");
-          }
-
-          document
-            .getElementById("background2")
-            .classList.toggle("backgroundchange");
-          document
-            .getElementsByClassName("buttons")
-            .classList.toggle("fundobotao");
-          document.getElementById("background").classList.toggle("hidden");
-        });
-    </script>
-    <script>
-      function toggleHtmlClass() {
-        document.documentElement.classList.toggle("light");
-      }
-    </script>
   </body>
 </html>
