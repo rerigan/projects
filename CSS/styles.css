@@ -18,6 +18,10 @@ body {
 body * {
   transition: all 0.2s;
 }
+.descrip {
+  font-weight: bold;
+  padding-top: 5px;
+}
 
 header {
   padding: 2rem;
@@ -96,6 +100,9 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(20px);
   background: rgba(0, 0, 0, 0.2);
+}
+.orbit-card.firstcard {
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .orbit-card a {
   text-decoration: none;
