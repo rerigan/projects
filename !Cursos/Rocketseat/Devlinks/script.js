@@ -31,9 +31,7 @@ document
             .getElementById("background2")
             .classList.toggle("backgroundchange");
         document
-            .getElementsByClassName("buttons")
-            .classList.toggle("fundobotao");
-        document.getElementById("background").classList.toggle("hidden");
+
     });
 
 function toggleHtmlClass() {
