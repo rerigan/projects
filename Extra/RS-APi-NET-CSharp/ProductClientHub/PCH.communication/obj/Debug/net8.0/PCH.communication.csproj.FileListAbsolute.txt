@@ -1,0 +1,12 @@
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\bin\Debug\net8.0\PCH.communication.deps.json
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\bin\Debug\net8.0\PCH.communication.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\bin\Debug\net8.0\PCH.communication.pdb
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.AssemblyInfoInputs.cache
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.AssemblyInfo.cs
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.sourcelink.json
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\refint\PCH.communication.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\PCH.communication.pdb
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.communication\obj\Debug\net8.0\ref\PCH.communication.dll

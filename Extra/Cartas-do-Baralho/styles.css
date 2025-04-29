@@ -1,0 +1,62 @@
+:root {
+  --whitelight: white;
+  --inverse: black;
+  --botaohover: rgba(102, 102, 102, 0.3);
+}
+
+.dark {
+  --whitelight: black;
+  --inverse: white;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  box-sizing: border-box;
+  background: var(--whitelight);
+}
+
+header {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+}
+h1 {
+  text-align: left;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--inverse);
+}
+.botoeshome {
+  width: 300px;
+  margin: auto;
+}
+.botoeshome ul {
+  list-style: none;
+}
+
+.botoeshome ul li {
+  list-style: none;
+  display: flex;
+  background: var(--inverse);
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.botoeshome ul li a {
+  text-decoration: none;
+  color: var(--whitelight);
+  padding: 26px 24px;
+  display: flex;
+  font-weight: 700;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.botoeshome ul li a:hover {
+  background: var(--botaohover);
+}
+
+.escondido {
+  display: none;
+}

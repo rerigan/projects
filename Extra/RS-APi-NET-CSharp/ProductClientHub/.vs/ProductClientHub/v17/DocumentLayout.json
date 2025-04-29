@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{82F50722-0269-41BD-9FC0-1806E3BBEE5D}|ProductClientHub.API\\ProductClientHub.API.csproj|c:\\users\\administrador\\onedrive\\projetos\\projects\\extra\\rs-api-net-csharp\\productclienthub\\productclienthub.api\\productclienthub.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{82F50722-0269-41BD-9FC0-1806E3BBEE5D}|ProductClientHub.API\\ProductClientHub.API.csproj|solutionrelative:productclienthub.api\\productclienthub.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79CB7678-BE18-4361-9CAF-F8BCFAEBDEA0}|PCH.exceptions\\PCH.exceptions.csproj|c:\\users\\administrador\\onedrive\\projetos\\projects\\extra\\rs-api-net-csharp\\productclienthub\\pch.exceptions\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79CB7678-BE18-4361-9CAF-F8BCFAEBDEA0}|PCH.exceptions\\PCH.exceptions.csproj|solutionrelative:pch.exceptions\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05F6408D-A92F-4A3B-BFB4-335003391F87}|PCH.communication\\PCH.communication.csproj|c:\\users\\administrador\\onedrive\\projetos\\projects\\extra\\rs-api-net-csharp\\productclienthub\\pch.communication\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05F6408D-A92F-4A3B-BFB4-335003391F87}|PCH.communication\\PCH.communication.csproj|solutionrelative:pch.communication\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductClientHub.API",
+              "DocumentMoniker": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\ProductClientHub.API\\ProductClientHub.API.csproj",
+              "RelativeDocumentMoniker": "ProductClientHub.API\\ProductClientHub.API.csproj",
+              "ToolTip": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\ProductClientHub.API\\ProductClientHub.API.csproj",
+              "RelativeToolTip": "ProductClientHub.API\\ProductClientHub.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-29T15:15:58.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\PCH.exceptions\\Class1.cs",
+              "RelativeDocumentMoniker": "PCH.exceptions\\Class1.cs",
+              "ToolTip": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\PCH.exceptions\\Class1.cs",
+              "RelativeToolTip": "PCH.exceptions\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T15:15:47.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\PCH.communication\\Class1.cs",
+              "RelativeDocumentMoniker": "PCH.communication\\Class1.cs",
+              "ToolTip": "C:\\Users\\Administrador\\OneDrive\\Projetos\\projects\\Extra\\RS-APi-NET-CSharp\\ProductClientHub\\PCH.communication\\Class1.cs",
+              "RelativeToolTip": "PCH.communication\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T15:15:32.973Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

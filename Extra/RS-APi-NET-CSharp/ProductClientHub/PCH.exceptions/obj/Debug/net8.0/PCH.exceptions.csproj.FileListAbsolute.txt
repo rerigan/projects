@@ -1,0 +1,12 @@
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\bin\Debug\net8.0\PCH.exceptions.deps.json
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\bin\Debug\net8.0\PCH.exceptions.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\bin\Debug\net8.0\PCH.exceptions.pdb
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.AssemblyInfoInputs.cache
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.AssemblyInfo.cs
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.sourcelink.json
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\refint\PCH.exceptions.dll
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\PCH.exceptions.pdb
+C:\Users\Administrador\OneDrive\Projetos\projects\Extra\RS-APi-NET-CSharp\ProductClientHub\PCH.exceptions\obj\Debug\net8.0\ref\PCH.exceptions.dll
