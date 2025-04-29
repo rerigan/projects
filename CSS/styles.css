@@ -57,7 +57,7 @@ h4 {
 }
 
 a {
-  color: #00bcd4;
+  color: #00e1ff;
 }
 
 .projects {
@@ -69,22 +69,16 @@ a {
 }
 
 footer {
-  margin: auto;
   text-align: center;
-  justify-content: space-evenly;
+  margin-bottom: 5rem;
 }
 
 #footerlinks {
-  justify-content: space-around;
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
+  padding: 20px;
   text-decoration: none;
-  margin-bottom: 2rem;
-}
-
-#footerlinks h4 a {
-  text-decoration: none;
+  letter-spacing: 5px;
+  font-size: 30px;
+  opacity: 80%;
 }
 
 .orbit-card {
@@ -105,6 +99,7 @@ footer {
 }
 .orbit-card.firstcard {
   border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
 }
 .orbit-card a {
   text-decoration: none;
@@ -116,6 +111,11 @@ footer {
 }
 .orbit-card p {
   color: transparent;
+}
+.orbit-card.firstcard p {
+  color: white;
+  opacity: 80%;
+  padding-top: 10px;
 }
 
 .orbit-card img {
@@ -137,6 +137,10 @@ footer {
   color: transparent;
   opacity: 0%;
   pointer-events: none;
+}
+.orbit-card-content.firstcard {
+  color: white;
+  opacity: 100%;
 }
 
 .orbit-card:hover .orbit-card-content {
