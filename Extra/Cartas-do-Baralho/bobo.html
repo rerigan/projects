@@ -7,6 +7,7 @@
     <style>
       * {
         box-sizing: border-box;
+        user-select: none;
       }
       body,
       html {
@@ -28,7 +29,7 @@
         font-size: 45px;
         width: 80%;
         font-weight: 700;
-        pointer-events: none;
+
         margin-top: 30px;
       }
 
@@ -40,6 +41,10 @@
         margin-bottom: 30px;
         font-size: 40px;
       }
+      .botoes * {
+        cursor: pointer;
+      }
+
       button {
         padding: 10px 20px;
 
@@ -51,10 +56,7 @@
         cursor: pointer;
         transition: background-color 0.3s;
       }
-      .botoes:disabled {
-        color: #bdbdbd;
-        cursor: not-allowed;
-      }
+
       .icon:hover:not(:disabled) {
         color: #dadada;
       }

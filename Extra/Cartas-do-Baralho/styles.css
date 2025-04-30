@@ -4,6 +4,7 @@
   box-sizing: border-box;
   max-width: 100%;
   transition: all 0.3s;
+  user-select: none;
 }
 :root {
   --whitelight: white;
