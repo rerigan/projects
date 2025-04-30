@@ -33,16 +33,25 @@
         <div class="carta">
           <p id="texto-carta"></p>
         </div>
-        <div class="botoeshome" style="margin-top: 200px">
-          <ul>
-            <li>
-              <a href="#" onclick="sortearCarta()" id="proxcarta"
-                >Próxima Carta</a
-              >
-            </li>
-          </ul>
-        </div>
       </main>
+      <footer>
+        <div class="botoeshome" style="margin-top: 200px">
+          <a href="#" onclick="sortearCarta()">
+            <div
+              class="botaonext"
+              style="
+                color: white;
+                transform: rotate(180deg);
+                position: fixed;
+                font-size: 30px;
+                bottom: 0;
+                margin-bottom: 50px;
+              "
+            >
+              <ion-icon name="arrow-back-outline"></ion-icon></div
+          ></a>
+        </div>
+      </footer>
     </div>
     <script
       type="module"

@@ -12,6 +12,15 @@
   --botaohover: rgba(102, 102, 102, 0.3);
 }
 
+footer {
+  justify-content: center;
+  display: flex;
+}
+
+.botaonext {
+  position: fixed;
+}
+
 .dark {
   --whitelight: black;
   --inverse: white;
@@ -49,6 +58,7 @@ header {
   justify-content: center;
   margin: auto;
   display: flex;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1 {
@@ -85,6 +95,7 @@ h2 {
   flex-direction: column;
   margin: 20px;
   border: 1px solid var(--inverse);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .botoeshome ul li a {
