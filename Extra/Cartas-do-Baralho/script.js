@@ -1,10 +1,6 @@
-// document.getElementById('trocacor').addEventListener('click', () => {
-//     document.documentElement.classList.toggle('dark');
-// });
-
-// function toggledark() {
-//     document.documentElement.classList.toggle("light");
-// };
+function toggledark() {
+    document.documentElement.classList.toggle("dark");
+};
 
 const perguntas = [
     "Qual foi a maior mentira que você já contou?",
@@ -22,45 +18,6 @@ const respostas = [
 
 function esconderTudo() {
     document.querySelectorAll('div').forEach(div => div.classList.add('escondido'));
-}
-
-function mostrarRegras() {
-    esconderTudo();
-    document.getElementById('tela-regras').classList.remove('escondido');
-}
-
-function mostrarEscolha() {
-    esconderTudo();
-    document.getElementById('tela-escolha').classList.remove('escondido');
-}
-function comecar() {
-    document.getElementById('regras').classList.toggle('escondido');
-}
-function botaoComecar() {
-    esconderTudo();
-    document.getElementById('reidascartas').classList.toggle('escondido');
-}
-
-function voltarInicio() {
-    esconderTudo();
-    document.getElementById('tela-inicial').classList.remove('escondido');
-}
-
-function voltarEscolha() {
-    esconderTudo();
-    document.getElementById('tela-escolha').classList.remove('escondido');
-}
-
-function mostrarCartasPretas() {
-    esconderTudo();
-    document.getElementById('cartas-pretas').classList.remove('escondido');
-    gerarPergunta();
-}
-
-function mostrarCartasBrancas() {
-    esconderTudo();
-    document.getElementById('cartas-brancas').classList.remove('escondido');
-    gerarRespostas();
 }
 
 function gerarPergunta() {
