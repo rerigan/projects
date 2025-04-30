@@ -16,12 +16,15 @@
   --whitelight: black;
   --inverse: white;
 }
+
 .icon {
-  color: white;
   position: absolute;
+  color: white;
   display: flex;
   margin: 20px;
   scale: 1.2;
+  left: 0;
+  top: 0;
 }
 body {
   font-family: Helvetica, sans-serif;
@@ -95,4 +98,10 @@ a {
 
 .escondido {
   display: none;
+}
+
+@media (min-width: 760px) {
+  .icon {
+    left: 30%;
+  }
 }
