@@ -19,7 +19,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## ...
 
-Pretendo fazer algumas melhorias no projeto, como refazê-la utilizando React e também no futuro tentar implementar um modo online.
+Pretendo fazer algumas melhorias no projeto, como recriá-lo utilizando React e também no futuro tentar implementar um modo online.
 <br><br><br><br><br><br><br>
 
 <p align="center">
