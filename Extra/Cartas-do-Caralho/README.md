@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://rerigan.github.io/" target="_blank"><img src="./Assets/cartas.png" alt="Preview do site Cartas do Caralho"></a>
+  <a href="https://rerigan.vercel.app/Extra/Cartas-do-Caralho/index.html" target="_blank"><img src="./Assets/cartas.png" alt="Preview do site Cartas do Caralho"></a>
 
 </p>
 <h2 align="center"> <a href="https://rerigan.vercel.app/Extra/Cartas-do-Caralho/index.html" target="_blank">Cartas do Caralho</a></h2>
@@ -17,7 +17,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - HTML e CSS - estilização
 - JavaScript - randomização e consumo de arquivo .JSON
 
-## Bonus
+## ...
 
 Pretendo fazer algumas melhorias no projeto, como refazê-la utilizando React e também no futuro tentar implementar um modo online.
 <br><br><br><br><br><br><br>
