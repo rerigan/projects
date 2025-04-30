@@ -19,8 +19,7 @@
 .icon {
   color: white;
   position: absolute;
-  left: 0;
-  top: 0;
+  display: flex;
   margin: 20px;
   scale: 1.2;
 }
