@@ -40,3 +40,31 @@ function gerarRespostas() {
 function embaralhar(array) {
     return [...array].sort(() => Math.random() - 0.5);
 }
+
+
+// fetch
+
+let cartas = [];
+
+fetch('cartas.json')
+    .then(response => response.json())
+    .then(data => {
+        cartas = data;
+        sortearCarta(); // Já mostra uma carta assim que carregar
+    })
+    .catch(error => {
+        console.error("Erro ao carregar cartas:", error);
+        document.getElementById('texto-carta').textContent = "Erro ao carregar cartas.";
+    });
+
+function sortearCarta() {
+    const p = document.getElementById('texto-carta');
+
+    if (cartas.length === 0) {
+        p.textContent = "As cartas ainda estão carregando...";
+        return;
+    }
+
+    const indice = Math.floor(Math.random() * cartas.length);
+    p.textContent = cartas[indice];
+}

@@ -1,35 +1,163 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="pt-br">
   <head>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cartas do Caralho</title>
-  </head>
-  <body>
-    <div id="tela-inicial">
-      <header>
-        <a href="index.html">
-          <h1>
-            Quem <br />é<br />
-            Você?
-          </h1>
-        </a>
-      </header>
-      <main>
-        <div class="botoeshome">
-          <ul>
-            <li>
-              <a href="#" id="regras">Rei das Cartas</a>
-            </li>
+    <title>Cartas em Tela Cheia</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
 
-            <li>
-              <a href="#" id="start">Bobo da Corte</a>
-            </li>
-          </ul>
-        </div>
-      </main>
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+      #carta-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+      }
+      #carta-texto {
+        max-width: 800px;
+        font-size: 45px;
+        width: 80%;
+        font-weight: 700;
+        pointer-events: none;
+        margin-top: 30px;
+      }
+
+      .botoes {
+        display: flex;
+        gap: 40px;
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 30px;
+        font-size: 40px;
+      }
+      button {
+        padding: 10px 20px;
+
+        font-size: 18px;
+        background-color: #000000;
+        color: white;
+        border: none;
+
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .botoes:disabled {
+        color: #bdbdbd;
+        cursor: not-allowed;
+      }
+      .icon:hover:not(:disabled) {
+        color: #dadada;
+      }
+      header {
+        text-align: center;
+      }
+      .icon {
+        font-size: 20px;
+        position: absolute;
+        margin-left: 10px;
+        color: black;
+      }
+
+      .titulo a {
+        color: black;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      #botao-proximo {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+
+  <header>
+    <a href="selecao.html">
+      <div class="icon">
+        <ion-icon name="arrow-back-outline"></ion-icon></div
+    ></a>
+    <div class="titulo">
+      <a href="index.html"><p>Cartas do Caralho</p></a>
     </div>
+  </header>
+  <body>
+    <div id="carta-container">
+      <div id="carta-texto"></div>
+      <div class="botoes">
+        <ion-icon id="botao-voltar" name="caret-back-circle-outline"></ion-icon>
+        <ion-icon
+          id="botao-proximo"
+          name="caret-back-circle-outline"
+        ></ion-icon>
+      </div>
+    </div>
+
+    <script>
+      let frases = [];
+      let indiceAtual = 0;
+
+      function atualizarCarta() {
+        const textoEl = document.getElementById("carta-texto");
+        const btnProx = document.getElementById("botao-proximo");
+        const btnVoltar = document.getElementById("botao-voltar");
+
+        textoEl.textContent = frases[indiceAtual];
+
+        btnVoltar.disabled = indiceAtual === 0;
+        btnProx.disabled = indiceAtual === frases.length - 1;
+        btnProx.textContent =
+          indiceAtual === frases.length - 1 ? "Fim" : "Próxima";
+      }
+
+      function randomizar(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.slice(0, 10);
+      }
+
+      fetch("frases.json")
+        .then((res) => res.json())
+        .then((data) => {
+          frases = randomizar(data);
+          atualizarCarta();
+        })
+        .catch((err) => {
+          console.error("Erro ao carregar frases:", err);
+          document.getElementById("carta-texto").textContent =
+            "Erro ao carregar frases.";
+        });
+
+      document.getElementById("botao-proximo").addEventListener("click", () => {
+        if (indiceAtual < frases.length - 1) {
+          indiceAtual++;
+          atualizarCarta();
+        }
+      });
+
+      document.getElementById("botao-voltar").addEventListener("click", () => {
+        if (indiceAtual > 0) {
+          indiceAtual--;
+          atualizarCarta();
+        }
+      });
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

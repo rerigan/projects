@@ -60,9 +60,11 @@ h2 {
 }
 .carta {
   color: white;
-  margin-top: 100px;
+  margin-top: 30px;
   font-size: 50px;
   font-weight: 700;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .regras {
@@ -89,10 +91,6 @@ h2 {
 }
 a {
   text-decoration: none;
-}
-
-.botoeshome ul li a:hover {
-  background: var(--botaohover);
 }
 
 .escondido {
