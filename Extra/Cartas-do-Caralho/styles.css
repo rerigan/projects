@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  transition: all 0.3s;
+  user-select: none;
+}
+:root {
+  --whitelight: white;
+  --inverse: black;
+  --botaohover: rgba(102, 102, 102, 0.3);
+}
+
+footer {
+  justify-content: center;
+  display: flex;
+}
+
+.botaonext {
+  position: fixed;
+}
+
+.dark {
+  --whitelight: black;
+  --inverse: white;
+}
+span {
+  opacity: 50%;
+}
+
+.icon {
+  position: absolute;
+  color: white;
+  display: flex;
+  margin: 20px;
+  scale: 1.2;
+  left: 0;
+  top: 0;
+}
+body {
+  font-family: Helvetica, sans-serif;
+  box-sizing: border-box;
+  background: var(--whitelight);
+  width: 90%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.voltar {
+  text-align: left;
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 20px;
+}
+header {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1 {
+  text-align: left;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--inverse);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+h2 {
+  text-decoration: none;
+  color: white;
+  margin-top: 50px;
+}
+.carta {
+  color: white;
+  margin-top: 30px;
+  font-size: 50px;
+  font-weight: 700;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.regras {
+  color: white;
+  font-weight: 700;
+  padding-bottom: 30px;
+}
+
+.botoeshome ul li {
+  list-style: none;
+  background: transparent;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid var(--inverse);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.botoeshome ul li a {
+  text-decoration: none;
+  color: var(--inverse);
+  padding: 26px 24px;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
+
+.escondido {
+  display: none;
+}
+
+@media (min-width: 760px) {
+  .icon {
+    left: 30%;
+  }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartas em Tela Cheia</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        user-select: none;
+      }
+      body,
+      html {
+        margin: auto;
+        padding: 0;
+        max-width: 800px;
+
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #carta-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+      }
+      #carta-texto {
+        max-width: 800px;
+        font-size: 45px;
+        width: 80%;
+        font-weight: 700;
+
+        margin-top: 30px;
+      }
+
+      .botoes {
+        display: flex;
+        gap: 40px;
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 30px;
+        font-size: 40px;
+      }
+      .botoes * {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        padding: 10px 20px;
+
+        font-size: 18px;
+        background-color: #000000;
+        color: white;
+        border: none;
+
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .icon:hover:not(:disabled) {
+        color: #dadada;
+      }
+      header {
+        text-align: center;
+      }
+      .icon {
+        font-size: 20px;
+        position: absolute;
+        margin-left: 10px;
+        color: black;
+      }
+
+      .titulo a {
+        color: black;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      #botao-proximo {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+
+  <header>
+    <a href="selecao.html">
+      <div class="icon">
+        <ion-icon name="arrow-back-outline"></ion-icon></div
+    ></a>
+    <div class="titulo">
+      <p><a href="index.html">Cartas do Caralho</a></p>
+    </div>
+  </header>
+  <body>
+    <div id="carta-container">
+      <div id="carta-texto"></div>
+      <div class="botoes">
+        <ion-icon id="botao-voltar" name="arrow-back-outline"></ion-icon>
+        <ion-icon id="botao-proximo" name="arrow-back-outline"></ion-icon>
+      </div>
+    </div>
+
+    <script>
+      let frases = [];
+      let indiceAtual = 0;
+
+      function atualizarCarta() {
+        const textoEl = document.getElementById("carta-texto");
+        const btnProx = document.getElementById("botao-proximo");
+        const btnVoltar = document.getElementById("botao-voltar");
+
+        textoEl.textContent = frases[indiceAtual];
+
+        btnVoltar.disabled = indiceAtual === 0;
+        btnProx.disabled = indiceAtual === frases.length - 1;
+        btnProx.textContent =
+          indiceAtual === frases.length - 1 ? "Fim" : "Próxima";
+      }
+
+      function randomizar(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.slice(0, 10);
+      }
+
+      fetch("frases.json")
+        .then((res) => res.json())
+        .then((data) => {
+          frases = randomizar(data);
+          atualizarCarta();
+        })
+        .catch((err) => {
+          console.error("Erro ao carregar frases:", err);
+          document.getElementById("carta-texto").textContent =
+            "Erro ao carregar frases.";
+        });
+
+      document.getElementById("botao-proximo").addEventListener("click", () => {
+        if (indiceAtual < frases.length - 1) {
+          indiceAtual++;
+          atualizarCarta();
+        }
+      });
+
+      document.getElementById("botao-voltar").addEventListener("click", () => {
+        if (indiceAtual > 0) {
+          indiceAtual--;
+          atualizarCarta();
+        }
+      });
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

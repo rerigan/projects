@@ -1,0 +1,28 @@
+Janela de regras
+<div id="tela-regras" class="escondido">
+  <h2>Regras do Jogo</h2>
+  <p>Aqui vão as regras do seu jogo...</p>
+  <button onclick="voltarInicio()">Voltar</button>
+  <!-- Tela de escolha de papel -->
+  <div id="tela-escolha" class="escondido">
+    <h2>Quem é você?</h2>
+    <button onclick="mostrarCartasPretas()">Rei das Cartas</button>
+    <button onclick="mostrarCartasBrancas()">Bobo da Corte</button>
+    <button onclick="voltarInicio()">Voltar</button>
+  </div>
+
+  <!-- Cartas Pretas (perguntas) -->
+  <div id="cartas-pretas" class="escondido">
+    <h2>Pergunta aleatória:</h2>
+    <p id="pergunta-texto"></p>
+    <button onclick="gerarPergunta()">Nova Pergunta</button>
+    <button onclick="voltarEscolha()">Voltar</button>
+  </div>
+
+  <!-- Cartas Brancas (respostas com múltiplas opções) -->
+  <div id="cartas-brancas" class="escondido">
+    <h2>Escolha uma carta:</h2>
+    <div id="opcoes-resposta"></div>
+    <button onclick="voltarEscolha()">Voltar</button>
+  </div>
+</div>
