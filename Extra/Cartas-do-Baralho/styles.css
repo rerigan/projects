@@ -16,6 +16,9 @@
   --whitelight: black;
   --inverse: white;
 }
+span {
+  opacity: 50%;
+}
 
 .icon {
   position: absolute;
