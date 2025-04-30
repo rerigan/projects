@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://rerigan.vercel.app/Extra/Cartas-do-Caos/index.html" target="_blank"><img src="./Assets/cartas.pg" alt="Preview do site Cartas do Caos"></a>
+  <a href="https://rerigan.vercel.app/Extra/Cartas-do-Caos/index.html" target="_blank"><img src="./Assets/cartas.png" alt="Preview do site Cartas do Caos"></a>
 
 </p>
 <h2 align="center"> <a href="https://rerigan.vercel.app/Extra/Cartas-do-Caos/index.html" target="_blank">Cartas do Caralho</a></h2>
