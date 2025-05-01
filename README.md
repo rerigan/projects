@@ -8,11 +8,11 @@
 
 
 ## Projetos 🇧🇷 
-Olá, bem-vindo(a)! Essa pasta representa a minha evolução como desenvolvedor. No meu portfólio você tem acesso aos meus projetos e documentações associadas.
+Olá, bem-vindo(a)! Essa pasta representa a minha evolução como desenvolvedor. <br>No meu portfólio você tem acesso aos meus projetos e documentações associadas.
 
 Espero que goste!
 
 ## Projects 🇺🇸
-Hello, Welcome! This folder showcases my evolution as a developer. Through my portfolio you'll find most of my projects and associated documentation.
+Hello, Welcome! This folder showcases my evolution as a developer. <br>Through my portfolio you'll find most of my projects and associated documentation.
 
 Enjoy!
