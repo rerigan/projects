@@ -31,6 +31,7 @@ function sortearCarta() {
 }
 
 // Supondo que as cartas estejam em um array de objetos, onde cada objeto é uma carta
+
 const todasAsCartas = [/* suas cartas aqui */];
 
 // Função para randomizar as cartas
