@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // Verificar o aumento de salário conforme os cargos
+      // Estagiário 100%
+      // Analista 30%
+      // Gerente 30%
+      // Presidente 10%
+      const salario = prompt ("Digite o salario")
+      const cargo = prompt("Digite o cargo");
+      let aumento = 0;
+      switch (cargo) {
+        case "Estagiário":
+          aumento = 2 ;
+          break;
+        case "Analista":
+          aumento = 1.5;
+          break;
+        case "Gerente":
+          aumento = 1.3;
+          break;
+        case "Presidente":
+          aumento = 1.1;
+          break;
+        default:
+          alert("Cargo inválido");
+      }
+      //   const novoSalario = salario + (salario * aumento)
+    //   const novoSalario = salario * (1 + aumento);
+    const novoSalario = salario * aumento
+
+      console.log(novoSalario);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -18,4 +18,5 @@ const subtracao = (x,y)=>x-y;
 const multiplicacao = (x,y)=>x*y;
 const divisao = (x,y)=>x/y;
 
+
 console.log(`resultado: ${adicao(5,6)}`)

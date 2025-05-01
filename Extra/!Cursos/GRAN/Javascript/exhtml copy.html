@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function somar() {
+        const n1 = document.getElementById("n1").value;
+        const n2 = document.getElementById("n2").value;
+        const mtocm = n2 / 100
+const aoquadrado = mtocm * mtocm
+        const soma = Number(n1) / Number(aoquadrado)
+        const knife = soma.toFixed(2);
+        console.log("A soma dos números é: "+ soma)
+        const resultado = document.getElementById("resultado")
+        resultado.innerHTML = `A soma é: `+ knife
+      }
+    </script>
+  </head>
+  <body>
+    <form action="">
+      N1 <input type="text" id="n1" /> <br />
+      N2 <input type="text" id="n2" /> <br />
+      <input type="button" value="Somar" onClick="somar()" />
+      <h1 id="resultado"></h1>
+    </form>
+  </body>
+</html>
