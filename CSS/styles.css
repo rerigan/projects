@@ -187,18 +187,19 @@ ul {
   font-weight: 600;
   margin: 5px 0;
 }
-#by {
-  display: flex;
-
-  text-align: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
 
 .orbit-card-content a:hover {
   color: white !important;
 }
 a:hover {
   color: #ffffff;
+}
+
+footer a {
+}
+.footlinks {
+  letter-spacing: 10px;
+  display: inline-block;
+  width: 100px;
+  margin: auto;
 }
