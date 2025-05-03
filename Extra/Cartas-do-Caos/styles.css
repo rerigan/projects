@@ -81,7 +81,10 @@ h2 {
   margin-right: 20px;
   margin-left: 20px;
 }
-
+strong{
+  color:rgb(255, 0, 0);
+opacity:100%;
+}
 .regras {
   color: white;
   font-weight: 700;
