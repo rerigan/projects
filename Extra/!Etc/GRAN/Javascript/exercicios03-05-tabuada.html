@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Agora vamos fazer um mesmo exercício utilizando todas as estruturas de repetição
+(while, do... while e for): crie um script que seja capaz de gerar a tabuada de qualquer
+número inteiro digita
+    <script>
+        var num = Number(prompt('Digite um número para saber a tabuada'))
+        var num10 = num*10
+        var cont = 1
+
+        while(cont <= 10) {
+    
+           document.write(num + 'X' +cont+ '='+ num*cont +'<br>');
+           cont++;
+        }
+
+        for (let cont; cont <=10; cont++) {
+            document.write(num + 'X' +cont+ '='+ num*cont +'<br>');
+    
+        }
+
+
+      
+    </script>
+</body>
+</html>

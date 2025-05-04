@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Agora vamos fazer um exercício usando a estrutura condicional switch case: criar um
+    script que peça dois valores ao usuário e a operação que ele deseja executar (+, -, *,/).
+    Execute a operação desejada e mostre o resultado na tela.
+    <script>
+        const a = Number(prompt('Digite um número'))
+        const b = Number(prompt('Digite outro número'))
+        const operacao = prompt('Digita a operação desejada')
+        
+        
+        // switch (operacao) {
+        //     case '/':
+        //         var resultadoa = a / b;
+        //         break;
+
+        //     case '*':
+        //         var resultadoa = a * b;
+        //         break;
+        //     default:
+        //         document.write('Operação inválida');
+        // }
+            if (operacao=='/') {
+                var resultado = a/b;
+            } else if(operacao=='*') {
+                var resultado = a*b;
+            } else if (operacao=='+') {
+                var resultado = a + b;
+            } else if (operacao=='-') {
+                var resultado = a - b
+            } else {
+                document.write('Operação Inválida')
+            }
+
+        console.log(resultado)
+    </script>
+</body>
+</html>
