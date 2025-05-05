@@ -5,6 +5,7 @@ import keyboard
 from selenium import webdriver
 import requests
 from bs4 import BeautifulSoup
+import json
 
 pagina = requests.get('https://www.netvagas.com.br/empresa/anuncios/cidade/londrina-pr/cargo/estagio/')
 dados_pagina = BeautifulSoup(pagina.text, 'html.parser')
