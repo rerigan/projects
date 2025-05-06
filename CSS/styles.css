@@ -1,13 +1,12 @@
 /* Cards por @Luancss */
 
 #background {
-  transition: all 2s;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   position: fixed;
   z-index: -1;
-  opacity: 50%;
+  opacity: 40%;
 }
 body {
   margin: 0;
@@ -23,7 +22,8 @@ header h1 {
   margin: 0;
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.8);
-  display:inline-block;
+  display: inline-block;
+  cursor: default;
 }
 #nome {
   animation-fill-mode: forwards;
@@ -31,7 +31,7 @@ header h1 {
   transition: text-shadow 0.3s ease;
 }
 #nome:hover {
-text-shadow:#FFFFFF80 0px 0px 15px;
+  text-shadow: #ffffffa6 0px 0px 15px;
 }
 .descrip {
   font-weight: bold;
@@ -43,8 +43,6 @@ header {
   padding-top: 5rem;
   text-align: center;
 }
-
-
 
 main {
   flex: 1;
@@ -119,7 +117,35 @@ footer {
 .orbit-card.firstcard {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: transparent;
+
 }
+.orbit-card.firstcard p {
+  color: white;
+  opacity: 100%;
+  margin-top:3rem;
+  transition: scale 2s;
+}
+.orbit-card.firstcard:hover p{
+  scale:1.2;
+
+}
+.orbit-card.firstcard:hover h2{
+scale:1.8;
+transform:translateY(15px);
+transition: all 0.6s ease-in-out;
+}
+.orbit-card-content.firstcard {
+  color: white;
+  opacity: 100%;
+  width: 350px;
+  height: 220px;
+}
+#projetoscard {
+  animation: hover 5s infinite ease-in-out;
+}
+
+
+
 .orbit-card a {
   text-decoration: none;
   padding-top: 0;
@@ -130,11 +156,6 @@ footer {
 }
 .orbit-card p {
   color: transparent;
-}
-.orbit-card.firstcard p {
-  color: white;
-  opacity: 80%;
-  padding-top: 10px;
 }
 
 .orbit-card img {
@@ -148,8 +169,7 @@ footer {
 
 .orbit-card-content {
   position: absolute;
-  top: 0;
-  left: 0;
+
   padding: 10px;
   box-sizing: border-box;
   background-color: transparent;
@@ -157,10 +177,7 @@ footer {
   opacity: 0%;
   pointer-events: none;
 }
-.orbit-card-content.firstcard {
-  color: white;
-  opacity: 100%;
-}
+
 
 .orbit-card:hover .orbit-card-content {
   color: white;
@@ -206,7 +223,6 @@ a:hover {
   color: #ffffff;
 }
 
-
 .footlinks {
   letter-spacing: 10px;
   display: inline-block;
@@ -214,31 +230,28 @@ a:hover {
   margin: auto;
 }
 
-#projetoscard {
-animation: hover 5s infinite ease-in-out;
-
-}
-
 
 
 @keyframes scale {
   0% {
-    text-shadow:0; }
+    text-shadow: 0;
+  }
   50% {
-    text-shadow:#ffffff 0px 0px 10px
+    text-shadow: #ffffff 0px 0px 10px;
   }
   100% {
-    text-shadow:0;
+    text-shadow: 0;
   }
 }
 
 @keyframes hover {
   0% {
-    transform:translateY(-5px); }
+    transform: translateY(-5px);
+  }
   50% {
-    transform:translateY(5px);
+    transform: translateY(5px);
   }
   100% {
-    transform:translateY(-5px);
+    transform: translateY(-5px);
   }
 }
