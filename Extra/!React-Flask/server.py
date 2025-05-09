@@ -1,5 +1,9 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+
 
 camisetas = {
 	0:{"name": "Peitola","size": "M","price": 18.99},
@@ -23,7 +27,7 @@ def get_tshirts(id):
 def get_alltshirts():
     
     if(camisetas):
-        return (camisetas, 200)
+        return (jsonify({"camisetas": list(camisetas.values())}), 200)
     else:
         return ([], 200)
     
