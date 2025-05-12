@@ -1,23 +1,26 @@
+import UsersInfo from "./App copy";
 import ProductInfo from "./components/ProductInfo";
 
+
 const App = () => {
-  const numbers = [
-    {nome: 'Guilherme', idade: 24, trabalho:'Garçom'},
-    {nome: 'Josias', idade: 24, trabalho:'Pica Fina'},
-    {nome: 'Matolomeu', idade: 24, trabalho:'Garçom'},
-    {nome: 'Gigaboy', idade: 24, trabalho:'Garçom'}
+  const users = [
+    {id: 1, nome: 'Guilherme', idade: 24, trabalho:'Garçom'},
+    {id: 1,nome: 'Josias', idade: 24, trabalho:'Pica Fina'},
+    {id: 1,nome: 'Matolomeu', idade: 24, trabalho:'Garçom'},
+    {id: 1,nome: 'Gigaboy', idade: 24, trabalho:'Garçom'}
   ]
 
   return (
     <div>
-      {numbers.map(({nome,idade,trabalho}) => (
-        <ul key={nome}>
-          <li >{nome}</li>
-          <li >{idade}</li>
-          <li >{trabalho}</li>
+      {users.map(({nome,idade,trabalho, id}) => (
+        <ul>
+          <li key={id}>{nome}</li>
+          <li key={id}>{idade}</li>
+          <li key={id}>{trabalho}</li>
         </ul>
       ))} 
       <ProductInfo />
+      <UsersInfo />
     </div>
   );
 };
