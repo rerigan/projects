@@ -8,19 +8,22 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(226, 226, 226);
+  color:black;
 }
 
+
 #rua {
-  background-color: black;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.2);
+
   border: 1 solid white;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  color:black;
 }
 
 #footclass a:hover {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
   transition: all 0.2s;
 }
 

@@ -14,43 +14,29 @@
     <script defer src="js/script.js"></script>
   </head>
   <body
-    class="text-gray-200 flex items-center justify-center min-h-screen flex-col flex"
+    class=" flex items-center justify-center min-h-screen flex-col"
   >
-    <video
-      id="background"
-      autoplay
-      loop
-      muted
-      playsinline
-      poster="./assets/black.png"
-      preload="auto"
-    >
-      <source src="assets/3.mp4" type="video/mp4" />
-      Your browser does not support the video tag. Please consider using a
-      modern browser.
-    </video>
-
-    <main class="w-full max-w-md p-6 rounded-xl">
-      <h1 class="text-2xl font-bold mb-10 text-center">
+    <main class="w-full max-w-md p-6 rounded-xl ">
+      <h1 class="text-2xl font-bold mb-10 text-center"><a href="#">
         Buscar CEP em Ibiporã
-      </h1>
+      </a></h1>
 
       <input
         id="rua"
         type="text"
         placeholder="Digite parte do nome da rua (Ex: Estudantes)"
-        class="w-full p-3 rounded-lg mb-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="w-full p-3 rounded-lg mb-4 placeholder-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       <div id="resultado" class="space-y-4"></div>
     </main>
     <div id="footclass">
-      <footer class="footerclass mt-6 text-gray-400 text-sm pb-10 flex">
+      <footer class="footerclass mt-6 text-black text-sm pb-10 flex">
         <span
           >Desenvolvido por
           <a
             href="https://rerigan.vercel.app/"
-            style="color: #9e9cb4"
+            style="color: #414141"
             target="_blank"
             ><strong>Rerigan</strong></a
           ></span
