@@ -13,7 +13,19 @@ const UsersInfo = () => {
         <li>{name}</li>
         <li>{email}</li>
       </ul>
+
+      
 ))}
+{users.map(user => (
+      <ul>
+        <li>{user.id}</li>
+        <li>{user.name}</li>
+        <li>{user.email}</li>
+      </ul>
+
+      
+))}
+
       
     </div>
   )
