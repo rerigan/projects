@@ -1,0 +1,9 @@
+body{
+
+    animation: loadfade 1s ease-in;
+}
+
+@keyframes loadfade {
+    from { opacity: 0%;}
+    to{opacity:100%;}
+}

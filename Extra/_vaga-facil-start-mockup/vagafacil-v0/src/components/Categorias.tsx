@@ -4,10 +4,10 @@ import MiniCard from "./Minicard"
 
 const Categorias = () => {
   return (
-    <div className="p-10 md:pl-15">
-      <div className="text-center md:text-left mb-10">
-        <h2 className="font-bold text-2xl mb-2">Categorias</h2>
-        <h2>Encontre o evento em que deseja estacionar</h2>
+    <div className="p-5 md:pl-15">
+      <div className="text-center md:text-left mb-5">
+        <h2 className="font-bold md:text-3xl mb-2">Categorias</h2>
+        <h2 className="md:text-xl">Encontre o evento em que deseja estacionar</h2>
       </div>
       <div id="carrousel" className="flex items-center overflow-x-hidden relative">
         <CircleArrowLeft size={30} strokeWidth={1.5} className="inline-flex cursor-pointer z-10 min-w-[30px]"/>
