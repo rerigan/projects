@@ -18,6 +18,9 @@ const NavBar = () => {
       <div className="navicons md:hidden absolute left-4 ">
         <Menu />
       </div>
+      <div className="navicons md:hidden absolute right-4 ">
+        <MapPin />
+      </div>
       {/* Left */}
       <div className="flex items-center md:ml-5">
         <img src="./logo.png" width="40px" />

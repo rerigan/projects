@@ -1,5 +1,5 @@
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react"
-import MiniCard from "./Minicard"
+import MiniCard from "./MiniCard"
 
 
 const Categorias = () => {
@@ -9,7 +9,8 @@ const Categorias = () => {
         <h2 className="font-bold md:text-3xl mb-2">Categorias</h2>
         <h2 className="md:text-xl">Encontre o evento em que deseja estacionar</h2>
       </div>
-      <div id="carrousel" className="flex items-center overflow-x-hidden relative">
+      {/* Carrossel */}
+      <div id="carrossel" className="flex items-center overflow-x-hidden relative">
         <CircleArrowLeft size={30} strokeWidth={1.5} className="inline-flex cursor-pointer z-10 min-w-[30px]"/>
         <div className="flex transition-transform duration-300 mx-auto">
           <div className="flex gap-4">
