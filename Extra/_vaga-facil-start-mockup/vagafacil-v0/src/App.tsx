@@ -1,10 +1,13 @@
 import "./App.css";
+import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
+import ConcertImage from './assets/concertimage.png'
+
 function App() {
   return (
-    <div className="bg-[#1d1d1d] h-screen flex flex-col">
-      <NavBar text="oi, tudo bem?"/>
-     
+    <div className="h-screen flex flex-col">   
+     <NavBar/>  
+     <HeroSection img={ConcertImage}/>
       <main className="main-content flex-1"></main>
     </div>
   );
