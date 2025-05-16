@@ -38,3 +38,9 @@ body {
   line-height: 1.5;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
+
+.no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
