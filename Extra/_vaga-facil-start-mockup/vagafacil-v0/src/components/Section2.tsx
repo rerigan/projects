@@ -28,7 +28,7 @@ const Section2 = () => {
           </h2>
           <div
             id="filtros"
-            className="md:inline-flex gap-4 mb-4 items-center  select-none text-center flex overflow-x-auto scroll-smooth no-scrollbar  whitespace-nowrap "
+            className="md:inline-flex gap-4 mb-4 mx-17 md:mx-0 items-center  select-none text-center flex overflow-x-auto scroll-smooth no-scrollbar  whitespace-nowrap "
           >
             <h3 className="bg-[#35ebff] p-2 px-3 rounded-full text-sm inline-flex md:w-auto cursor-pointer hover:bg-[#60c9d4] transition-all  mb-2 md:mb-0">
               <Navigation size={20} className="mr-2  min-w-4" />

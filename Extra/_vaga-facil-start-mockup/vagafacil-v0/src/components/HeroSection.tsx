@@ -6,8 +6,8 @@ interface Props {
 
 const HeroSection = ({ img }: Props) => {
   return (
-    <div className="max-w-[97%] mx-auto">
-      <div className="herosection w-full mx-auto mt-20 mb-0  flex items-center">
+    <div id="top" className="max-w-[97%] mx-auto">
+      <div className="herosection w-full mx-auto pt-20 mb-0  flex items-center">
         <div className="flex flex-col md:flex-row w-full gap-8">
           {/* Div texto */}
           <div className="flex flex-col justify-center px-4 md:px-16 flex-1">

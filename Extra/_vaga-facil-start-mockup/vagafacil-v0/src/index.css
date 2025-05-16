@@ -1,15 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
-/* Variáveis tema escuro */
-body {
-  --background-color: #ffffff;
-  --text-color: #000000;
-}
-
-body.dark {
-  --background-color: #121212;
-  --text-color: #ffffff;
-}
 
 /* Reset CSS */
 * {
@@ -18,6 +8,10 @@ body.dark {
 }
 body {
   color:var(--text-color);
+
+}
+html {
+  scroll-behavior: smooth
 }
 
 ul,
@@ -43,4 +37,8 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.footer h3{
+  color: rgba(0,0,0,0.8)
 }

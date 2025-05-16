@@ -23,7 +23,7 @@ const Card = () => {
         </div>
         {/* Ver detalhes */}
         <div className="text-center mt-8 text-sm underline mb-1 ">
-<h3 className="cursor-pointer">Ver detalhes</h3>
+<a href=""><h3 className="">Ver detalhes</h3></a>
         </div>
     </div>
   )

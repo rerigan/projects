@@ -52,11 +52,11 @@ const NavBar = () => {
           <a href="#">Mudar localização</a>
         </nav>
       </div>
-      {/* Left */}
+      {/* VAGAFÁCIL */}
       <div className="flex items-center md:ml-5">
         <img src="./logo.png" width="40px" />
         <h1 className="text-4xl font-normal ml-2">
-          <span className="font-bold">Vaga</span>Fácil
+          <a href="#top"><span className="font-bold">Vaga</span>Fácil</a>
         </h1>
       </div>
 
