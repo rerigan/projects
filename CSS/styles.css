@@ -97,7 +97,9 @@ footer {
   transition: none;
   opacity: 100%;
 }
-
+.orbit-card.star {
+  border:  1px solid rgb(255, 0, 0) !important;
+}
 .orbit-card {
   position: relative;
   width: 350px;
@@ -113,30 +115,27 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(20px);
   background: rgba(0, 0, 0, 0.2);
-  
-    -webkit-user-drag: none;
-    user-select: none;
-  
+
+  -webkit-user-drag: none;
+  user-select: none;
 }
 .orbit-card.firstcard {
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: transparent;
-
 }
 .orbit-card.firstcard p {
   color: white;
   opacity: 100%;
-  margin-top:3rem;
+  margin-top: 3rem;
   transition: scale 2s;
 }
-.orbit-card.firstcard:hover p{
-  scale:1.2;
-
+.orbit-card.firstcard:hover p {
+  scale: 1.2;
 }
-.orbit-card.firstcard:hover h2{
-scale:1.8;
-transform:translateY(15px);
-transition: all 0.6s ease-in-out;
+.orbit-card.firstcard:hover h2 {
+  scale: 1.8;
+  transform: translateY(15px);
+  transition: all 0.6s ease-in-out;
 }
 .orbit-card-content.firstcard {
   color: white;
@@ -148,8 +147,9 @@ transition: all 0.6s ease-in-out;
   animation: hover 5s infinite ease-in-out;
 }
 
-
-
+#imgcard2, #imgcard3 {
+  object-fit: contain;
+}
 .orbit-card a {
   text-decoration: none;
   padding-top: 0;
@@ -182,7 +182,6 @@ transition: all 0.6s ease-in-out;
   opacity: 0%;
   pointer-events: none;
 }
-
 
 .orbit-card:hover .orbit-card-content {
   color: white;
@@ -234,8 +233,6 @@ a:hover {
   width: 100px;
   margin: auto;
 }
-
-
 
 @keyframes scale {
   0% {
