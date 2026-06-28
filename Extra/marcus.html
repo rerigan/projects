@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meditations | Marcus Aurelius</title>
+    <style>
+      /* CSS Variables for Elegant Dark Mode */
+      :root {
+        --bg-main: #0d0d0d;
+        --bg-card: #1a1a1a;
+        --text-primary: #e6e6e6;
+        --text-secondary: #a3a3a3;
+        --accent-gold: #5cc3ff;
+        --accent-gold-dim: rgba(212, 175, 55, 0.15);
+        --border-color: #333333;
+        user-select: none;
+      }
+
+      /* Base Styles */
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: 'Georgia', serif;
+        font-weight: normal;
+        margin-top: 0;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      /* Header Section */
+      header {
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      header h1 {
+        color: var(--accent-gold);
+        font-size: 3rem;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      header p.subtitle {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        font-style: italic;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+      strong {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      blockquote {
+        background: color-mix(in srgb, var(--accent-gold) 20%, transparent);
+
+        margin: 0px 0 30px 0px;
+        padding: 20px;
+        font-weight: bold;
+        color: #f0f0f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          var(--border-color),
+          transparent
+        );
+        margin: 60px 0;
+      }
+
+      /* Carousel Header & Controls */
+      .carousel-header {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .carousel-header h2 {
+        color: var(--accent-gold);
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      .carousel-controls {
+        display: flex;
+        position: absolute;
+        right: 10px;
+        gap: 10px;
+      }
+
+      .carousel-controls button {
+        background-color: var(--bg-card);
+        color: var(--accent-gold);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-controls button:hover {
+        background-color: var(--accent-gold);
+        color: var(--bg-main);
+        border-color: var(--accent-gold);
+      }
+
+      /* Carousel Track */
+      .carousel-track {
+        display: flex;
+        gap: 20px;
+
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding-bottom: 20px; /* Space for shadow */
+
+        /* Hide scrollbar for a cleaner look */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Carousel Cards */
+      .card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 25px;
+        width: 200px !important;
+        flex: 0 0 calc(100% - 60px); /* Mobile size */
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+
+        transition: border-color 0.3s ease;
+      }
+      .card > p:nth-of-type(2) {
+        margin-top: auto;
+        margin-bottom: 10px;
+      }
+
+      .card:hover {
+        border-color: var(--accent-gold);
+      }
+
+      .card h3,
+      .card h4 {
+        color: var(--accent-gold);
+        margin-bottom: 15px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+      }
+
+      .card h3 {
+        font-size: 1.4rem;
+      }
+      .card h4 {
+        font-size: 1.2rem;
+        border-bottom: none;
+        margin-bottom: 5px;
+      }
+
+      .card .label {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      ul {
+        padding-left: 20px;
+        color: var(--text-secondary);
+        margin-top: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 60px;
+      }
+
+      /* Responsive Desktop Sizes */
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2.2rem;
+        }
+        .carousel-header {
+          flex-direction: column;
+          gap: 15px;
+          align-items: flex-start;
+        }
+        .carousel-header h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Meditations</h1>
+        <p class="subtitle">A guide to becoming better on all fronts.</p>
+      </header>
+
+      <main>
+        <blockquote>
+          "You have power over your mind - not outside events. Realize this, and
+          you will find strength."
+        </blockquote>
+
+        <!-- SECTION 1: The 6 Core Teachings -->
+        <section>
+          <div class="carousel-header">
+            <h2>The 6 Core Teachings</h2>
+            <div class="carousel-controls">
+              <button id="teachings-prev" aria-label="Previous">
+                &#10094;
+              </button>
+              <button id="teachings-next" aria-label="Next">&#10095;</button>
+            </div>
+          </div>
+
+          <div class="carousel-track" id="teachings-track">
+            <div class="card">
+              <h3>1. Master Your Focus</h3>
+              <p>
+                <strong>The Dichotomy of Control:</strong> Separate what you can
+                control from what you cannot. You cannot control others'
+                opinions, the economy, or the past. You can control your
+                actions, judgments, and character.
+              </p>
+              <p>
+                <em>Application:</em> Stop leaking energy by complaining. Ask
+                yourself, "Is this up to me?" If not, let it go and focus 100%
+                on your own response.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>2. Master Your Mind</h3>
+              <p>
+                <strong>The Power of Perception:</strong> Things do not upset
+                us; our judgments about those things upset us. An event is just
+                an event. It is your brain that labels it "good" or "bad."
+              </p>
+              <p>
+                <em>Application:</em> Reframe setbacks. Choose to view obstacles
+                as training. <em>"What stands in the way becomes the way."</em>
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>3. Master Your Actions</h3>
+              <p>
+                <strong>Duty and Discipline:</strong> Marcus argued with himself
+                about getting out of bed, reminding himself he was created to do
+                the work of a human being, not to huddle under blankets.
+              </p>
+              <p>
+                <em>Application:</em> Stop waiting for motivation. Rely on duty
+                and discipline. Show up because it is the right thing to do.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>4. Master Your Relationships</h3>
+              <p>
+                <strong>Dealing with Difficult People:</strong> Marcus reminded
+                himself daily that he would encounter ungrateful and arrogant
+                people, but recognized they act out of ignorance.
+              </p>
+              <p>
+                <em>Application:</em> Do not let toxic behavior degrade your
+                character.
+                <em>"Be tolerant with others and strict with yourself."</em>
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>5. Master Your Character</h3>
+              <p>
+                <strong>The Four Virtues:</strong> Wealth and fame are
+                indifferent. The only true good is Virtue, comprising four
+                pillars:
+              </p>
+              <ul>
+                <li>
+                  <strong>Wisdom:</strong> Navigating situations logically.
+                </li>
+                <li>
+                  <strong>Courage:</strong> Doing what is right, even when hard.
+                </li>
+                <li><strong>Justice:</strong> Working for the common good.</li>
+                <li>
+                  <strong>Temperance:</strong> Self-discipline and moderation.
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>6. Master Your Perspective</h3>
+              <p>
+                <strong>Memento Mori:</strong> "Remember you must die." This
+                wasn't morbid for Marcus; it was a tool for supreme clarity.
+              </p>
+              <p>
+                <em>Application:</em> Let the reality of your mortality destroy
+                procrastination and petty anxieties. Live fully today.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+
+        <!-- SECTION 2: 22 Stoic Concepts -->
+        <section>
+          <div class="carousel-header">
+            <h2>22 Stoic Concepts for Daily Life</h2>
+            <div class="carousel-controls">
+              <button id="concepts-prev" aria-label="Previous">&#10094;</button>
+              <button id="concepts-next" aria-label="Next">&#10095;</button>
+            </div>
+          </div>
+
+          <div class="carousel-track" id="concepts-track">
+            <div class="card">
+              <h4>1. Encounter Unkindness</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He mentally prepared himself every morning to meet difficult
+                people. He treated them with patience, realizing they act out of
+                ignorance, and refused to let their behavior corrupt his own
+                character.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>2. Interpretation is Everything</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                If something bad happened, he chose to reject the feeling of
+                being harmed.
+                <em
+                  >"Choose not to be harmed, and you won't feel harmed. Don't
+                  feel harmed, and you haven't been."</em
+                >
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>3. Mind Superior to Body</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                When sick or in pain, he did not complain. When tempted, he used
+                logic to override bodily impulses, reminding himself that
+                yielding to base desires is beneath human dignity.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>4. Take Deliberate Actions</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He avoided autopilot by acting as if every single action could
+                be his last, eliminating aimlessness, distraction, and doing
+                things just for the sake of it.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>5. Don’t Retreat from the World</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                Even as an exhausted emperor, he didn't isolate himself. He
+                engaged with society, helped others, and fulfilled his civic
+                duties, believing humans are made for cooperation.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>6. Value Your Own Opinion</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He stopped caring what the public thought. He found it strange
+                that we love ourselves more than others, yet value their
+                opinions of us more than our own.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>7. Be Open to Correction</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                If someone proved him wrong, he changed his mind gladly,
+                believing that being corrected frees you from ignorance, whereas
+                clinging to false beliefs harms you.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>8. Cherish Freedom for All</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                Despite having absolute power, he ruled to protect the common
+                good, treating others fairly and not using people as pawns for
+                tyrannical ends.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>9. Have Self Respect</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He refused to degrade himself by throwing tantrums or obsessing
+                over trivial things, holding himself to the dignified standard
+                of a rational human being.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>10. Avoid Complaining</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                <em
+                  >"Don't be overheard complaining... Not even to yourself."</em
+                >
+                He accepted reality as it was and focused his energy purely on
+                fixing the problem.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>11. The Obstacle is the Way</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He used challenges as raw material to practice virtues. A
+                betrayal wasn't a roadblock; it became an opportunity to
+                practice forgiveness and grow.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>12. Adversity is Part of Nature</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He expected bad things to happen as a normal part of the
+                changing seasons of life, accepting them with a calm mind rather
+                than being shocked or angry.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>13. Adversity Makes Us Stronger</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He welcomed tough times as a test. Just as a fire burns brighter
+                when things are thrown into it, he used the heavy burdens of
+                warfare to build his resilience.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>14. Everything Happened Before</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                When faced with a crisis, he zoomed out, realizing past emperors
+                faced the exact same problems, which gave him immense peace of
+                mind.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>15. Deal with What’s in Front of You</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He confined his attention to the present moment, taking the very
+                next logical step required rather than being overwhelmed by a
+                massive future problem.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>16. Focus on Doing What is Right</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                His moral compass dictated his actions. He did the right thing
+                regardless of the political consequences, ease, or the public
+                pushback he received.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>17. Despise Cowardice</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                When he didn't want to leave his warm bed on cold mornings, he
+                argued with himself about human duty, despising laziness and
+                acting with courage.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>18. The Time for Action is Now</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He used the reality of death to destroy procrastination, telling
+                himself he could leave life right now, and stopped waiting for
+                tomorrow to be a good man.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>19. Get Back on Track</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                When he messed up or lost his temper, he didn't spiral into
+                self-pity. He acknowledged the slip-up and cheerfully returned
+                to his philosophical rhythm.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>20. Look Beneath the Surface</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He aggressively stripped away illusions to destroy superficial
+                desires, describing vintage wine as fermented grapes and royal
+                robes as sheep's wool.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>21. Wealth is Neither Good nor Evil</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He enjoyed his vast wealth but wouldn't mourn it if it vanished,
+                knowing money didn't make him a better person—only internal
+                virtue could do that.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>22. Express Gratitude</h4>
+              <span class="label">How he dealt with it</span>
+              <p>
+                He dedicated Book 1 of <em>Meditations</em> entirely to listing
+                out his friends, family, and mentors, expressing deep gratitude
+                for the specific lessons they taught him.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; Built for a better mind.</p>
+      </footer>
+    </div>
+
+    <!-- JavaScript for Carousel Navigation -->
+    <script>
+      function setupCarousel(trackId, prevBtnId, nextBtnId) {
+        const track = document.getElementById(trackId);
+        const prevBtn = document.getElementById(prevBtnId);
+        const nextBtn = document.getElementById(nextBtnId);
+
+        // Scroll Right
+        nextBtn.addEventListener('click', () => {
+          // Calculate scroll amount based on the width of a single card + the gap (20px)
+          const cardWidth = track.querySelector('.card').offsetWidth;
+          track.scrollBy({ left: cardWidth + 20, behavior: 'smooth' });
+        });
+
+        // Scroll Left
+        prevBtn.addEventListener('click', () => {
+          const cardWidth = track.querySelector('.card').offsetWidth;
+          track.scrollBy({ left: -(cardWidth + 20), behavior: 'smooth' });
+        });
+      }
+
+      // Initialize both carousels
+      setupCarousel('teachings-track', 'teachings-prev', 'teachings-next');
+      setupCarousel('concepts-track', 'concepts-prev', 'concepts-next');
+    </script>
+  </body>
+</html>
