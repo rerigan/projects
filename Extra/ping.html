@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Web Ping Pong</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #score-board {
+            margin-top: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            letter-spacing: 5px;
+        }
+        #instructions {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ccc;
+        }
+        .player-score { color: #00aaff; }
+        .ai-score { color: #ffaa00; }
+    </style>
+    <!-- Include Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="ui-layer">
+        <div id="score-board">
+            <span id="score-player" class="player-score">0</span> 
+            - 
+            <span id="score-ai" class="ai-score">0</span>
+        </div>
+        <div id="instructions">Use your Mouse to move the Blue Paddle</div>
+    </div>
+
+    <script>
+        // --- GAME VARIABLES ---
+        let scorePlayer = 0;
+        let scoreAi = 0;
+        
+        const tableWidth = 100;
+        const tableLength = 140;
+        const paddleWidth = 20;
+        const paddleDepth = 4;
+        const ballRadius = 2.5;
+
+        let ballSpeedZ = -1.5;
+        let ballSpeedX = 0;
+        let baseSpeed = 1.5;
+
+        // --- SCENE SETUP ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0x222222, 100, 300);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // Position camera behind the player
+        camera.position.set(0, 60, 110);
+        camera.lookAt(0, -10, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+        // --- LIGHTING ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        dirLight.position.set(0, 100, 20);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 2048;
+        dirLight.shadow.mapSize.height = 2048;
+        dirLight.shadow.camera.left = -60;
+        dirLight.shadow.camera.right = 60;
+        dirLight.shadow.camera.top = 80;
+        dirLight.shadow.camera.bottom = -80;
+        scene.add(dirLight);
+
+        // --- OBJECTS ---
+        // 1. Table
+        const tableGeo = new THREE.BoxGeometry(tableWidth, 2, tableLength);
+        const tableMat = new THREE.MeshPhongMaterial({ color: 0x115533, shininess: 80 });
+        const table = new THREE.Mesh(tableGeo, tableMat);
+        table.position.y = -1;
+        table.receiveShadow = true;
+        scene.add(table);
+
+        // Table Borders (White lines)
+        const borderGeo = new THREE.EdgesGeometry(tableGeo);
+        const borderMat = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2 });
+        const tableBorders = new THREE.LineSegments(borderGeo, borderMat);
+        tableBorders.position.y = -1;
+        scene.add(tableBorders);
+
+        // 2. Net
+        const netGeo = new THREE.BoxGeometry(tableWidth + 2, 4, 1);
+        const netMat = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+        const net = new THREE.Mesh(netGeo, netMat);
+        net.position.y = 2;
+        scene.add(net);
+
+        // 3. Paddles
+        const paddleGeo = new THREE.BoxGeometry(paddleWidth, 4, paddleDepth);
+        
+        // Player Paddle (Blue)
+        const playerMat = new THREE.MeshPhongMaterial({ color: 0x00aaff });
+        const playerPaddle = new THREE.Mesh(paddleGeo, playerMat);
+        playerPaddle.position.set(0, 2, tableLength / 2 - 5);
+        playerPaddle.castShadow = true;
+        scene.add(playerPaddle);
+
+        // AI Paddle (Orange)
+        const aiMat = new THREE.MeshPhongMaterial({ color: 0xffaa00 });
+        const aiPaddle = new THREE.Mesh(paddleGeo, aiMat);
+        aiPaddle.position.set(0, 2, -tableLength / 2 + 5);
+        aiPaddle.castShadow = true;
+        scene.add(aiPaddle);
+
+        // 4. Ball
+        const ballGeo = new THREE.SphereGeometry(ballRadius, 32, 32);
+        const ballMat = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 100 });
+        const ball = new THREE.Mesh(ballGeo, ballMat);
+        ball.position.y = ballRadius;
+        ball.castShadow = true;
+        scene.add(ball);
+
+        // --- INPUT HANDLING ---
+        let mouseX = 0;
+        document.addEventListener('mousemove', (event) => {
+            // Convert mouse X position to 3D world coordinates roughly
+            const percentX = event.clientX / window.innerWidth;
+            // Map 0-1 to -tableWidth/2 to +tableWidth/2
+            mouseX = (percentX - 0.5) * (tableWidth + 40); 
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- GAME LOGIC ---
+        function resetBall(scorer) {
+            ball.position.set(0, ballRadius, 0);
+            ballSpeedX = (Math.random() - 0.5) * 1.5;
+            
+            // Serve to whoever lost the point
+            if (scorer === 'player') {
+                ballSpeedZ = -baseSpeed;
+            } else {
+                ballSpeedZ = baseSpeed;
+            }
+        }
+
+        function updateScore(winner) {
+            if (winner === 'player') {
+                scorePlayer++;
+                document.getElementById('score-player').innerText = scorePlayer;
+            } else {
+                scoreAi++;
+                document.getElementById('score-ai').innerText = scoreAi;
+            }
+            resetBall(winner);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 1. Move Player Paddle
+            // Clamp paddle within table boundaries
+            const maxPaddleX = (tableWidth / 2) - (paddleWidth / 2);
+            playerPaddle.position.x = Math.max(-maxPaddleX, Math.min(maxPaddleX, mouseX));
+
+            // 2. Move AI Paddle
+            // AI follows the ball with slight delay/imperfection
+            const aiSpeed = 1.0;
+            if (aiPaddle.position.x < ball.position.x - 2) {
+                aiPaddle.position.x += aiSpeed;
+            } else if (aiPaddle.position.x > ball.position.x + 2) {
+                aiPaddle.position.x -= aiSpeed;
+            }
+            aiPaddle.position.x = Math.max(-maxPaddleX, Math.min(maxPaddleX, aiPaddle.position.x));
+
+            // 3. Move Ball
+            ball.position.x += ballSpeedX;
+            ball.position.z += ballSpeedZ;
+
+            // 4. Collision Detection: Side Walls
+            if (ball.position.x >= (tableWidth / 2) - ballRadius || ball.position.x <= -(tableWidth / 2) + ballRadius) {
+                ballSpeedX = -ballSpeedX;
+                // Correct position to prevent getting stuck
+                ball.position.x = Math.sign(ball.position.x) * ((tableWidth / 2) - ballRadius);
+            }
+
+            // 5. Collision Detection: Player Paddle
+            const playerZHit = playerPaddle.position.z - (paddleDepth / 2) - ballRadius;
+            if (ball.position.z >= playerZHit && ball.position.z <= playerPaddle.position.z) {
+                if (Math.abs(ball.position.x - playerPaddle.position.x) <= (paddleWidth / 2) + ballRadius) {
+                    ball.position.z = playerZHit; // Pop ball out of paddle
+                    ballSpeedZ = -Math.abs(ballSpeedZ) * 1.05; // Bounce back & increase speed by 5%
+                    
+                    // Add "spin" depending on where it hit the paddle
+                    const hitPoint = ball.position.x - playerPaddle.position.x;
+                    ballSpeedX = hitPoint * 0.15;
+                }
+            }
+
+            // 6. Collision Detection: AI Paddle
+            const aiZHit = aiPaddle.position.z + (paddleDepth / 2) + ballRadius;
+            if (ball.position.z <= aiZHit && ball.position.z >= aiPaddle.position.z) {
+                if (Math.abs(ball.position.x - aiPaddle.position.x) <= (paddleWidth / 2) + ballRadius) {
+                    ball.position.z = aiZHit;
+                    ballSpeedZ = Math.abs(ballSpeedZ) * 1.05;
+                    
+                    const hitPoint = ball.position.x - aiPaddle.position.x;
+                    ballSpeedX = hitPoint * 0.15;
+                }
+            }
+
+            // 7. Check for Scoring (Out of bounds)
+            if (ball.position.z > tableLength / 2 + 10) {
+                updateScore('ai');
+            } else if (ball.position.z < -tableLength / 2 - 10) {
+                updateScore('player');
+            }
+
+            // Add slight roll effect to the ball
+            ball.rotation.x += ballSpeedZ * 0.1;
+            ball.rotation.z -= ballSpeedX * 0.1;
+
+            renderer.render(scene, camera);
+        }
+
+        // Start game
+        animate();
+    </script>
+</body>
+</html>
