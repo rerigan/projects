@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elite Learning Principles</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0f1115;
+        color: #ececec;
+        font-family: Inter, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .container {
+        width: min(900px, 90%);
+        height: 90vh;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      small {
+        color: #777;
+      }
+
+      .progress {
+        height: 6px;
+        background: #222;
+        border-radius: 100px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .progress div {
+        height: 100%;
+        width: 0%;
+        background: #4ea3ff;
+        transition: 0.4s;
+      }
+
+      .card {
+        background: #17191f;
+        position: relative;
+        padding: 35px;
+        border-radius: 18px;
+        height: 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+        align-items: center;
+      }
+
+      .number {
+        position: absolute;
+        font-size: 0.9rem;
+        color: #ffffff;
+        display: flex;
+        top: 1rem;
+        left: 1rem;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        background-color: rgb(43, 43, 59);
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      .description {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: #ddd;
+      }
+
+      #summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #4ea3ff;
+        position: absolute;
+        bottom: 2rem;
+        width: 93%;
+        background: #111;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .notes {
+        margin-top: 10px;
+        line-height: 1.7;
+        color: #aaa;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      button {
+        background: #20242c;
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #2b313d;
+      }
+
+      .quote {
+        color: #666;
+        font-style: italic;
+        font-size: 0.95rem;
+        text-align: center;
+        margin-top: 18px;
+        position: absolute;
+        top: 10px;
+      }
+
+      kbd {
+        background: #222;
+        padding: 2px 6px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>Elite Learning</h1>
+          <small>Habits of the Top 0.1%</small>
+        </div>
+
+        <div id="counter"></div>
+      </header>
+
+      <div class="progress">
+        <div id="bar"></div>
+      </div>
+
+      <div class="card">
+        <div class="quote" id="quote"></div>
+        <div class="number" id="number"></div>
+
+        <div class="title" id="title"></div>
+
+        <div class="description" id="description"></div>
+
+        <div id="summary">
+          <div>Why</div>
+
+          <div class="notes" id="notes"></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button onclick="previous()">← Previous</button>
+
+        <div>
+          <kbd>←</kbd>
+          <kbd>→</kbd>
+        </div>
+
+        <button onclick="next()">Next →</button>
+      </div>
+    </div>
+
+    <script>
+      const principles = [
+        {
+          title: 'Optimize the Learning Loop',
+
+          description:
+            'Focus on becoming someone who learns rapidly rather than chasing grades or short-term results.',
+
+          notes:
+            'Every project becomes: attempt → feedback → improvement. Great performers optimize the process, not just the outcome.',
+        },
+
+        {
+          title: 'Seek Productive Discomfort',
+
+          description: 'Work on the smallest thing you currently cannot do.',
+
+          notes:
+            'Growth happens just beyond your comfort zone. Avoid endlessly practicing what you already know.',
+        },
+
+        {
+          title: 'Test Yourself Constantly',
+
+          description: 'Replace rereading with active recall.',
+
+          notes:
+            'Close the book. Explain from memory. Find gaps. Repeat. Retrieval is where learning happens.',
+        },
+
+        {
+          title: 'Treat Mistakes as Data',
+
+          description: 'Every error reveals a weakness in your mental model.',
+
+          notes: "Never stop at 'I got it wrong.' Ask WHY you got it wrong.",
+        },
+
+        {
+          title: 'Build Mental Models',
+
+          description: 'Learn principles instead of isolated facts.',
+
+          notes:
+            "Understanding systems lets you solve problems you've never seen before.",
+        },
+
+        {
+          title: 'Ask Better Questions',
+
+          description:
+            "Ask 'When does this stop being true?' instead of only 'Is this true?'",
+
+          notes:
+            'The quality of your thinking is limited by the quality of your questions.',
+        },
+
+        {
+          title: 'Think Probabilistically',
+
+          description: 'Increase your odds instead of seeking certainty.',
+
+          notes: 'Life rarely offers guarantees. Think in probabilities.',
+        },
+
+        {
+          title: 'Learn Across Disciplines',
+
+          description:
+            'Programming, psychology, economics, history and statistics strengthen one another.',
+
+          notes: 'Innovation often happens where disciplines intersect.',
+        },
+
+        {
+          title: 'Optimize for Compounding',
+
+          description:
+            'Prefer skills that continue paying dividends for years.',
+
+          notes: 'English, coding, communication and health compound.',
+        },
+
+        {
+          title: 'Measure Progress',
+
+          description: 'Track what matters objectively.',
+
+          notes: 'You cannot improve what you never observe.',
+        },
+
+        {
+          title: 'Protect Attention',
+
+          description: 'Deep work beats fragmented work.',
+
+          notes: 'Attention is one of the highest leverage resources.',
+        },
+
+        {
+          title: 'Explain Everything',
+
+          description:
+            "If you cannot explain it simply, you probably don't understand it.",
+
+          notes: "Teach imaginary students. You'll immediately discover gaps.",
+        },
+
+        {
+          title: 'Detach Ego',
+
+          description: "Say 'I don't know' comfortably.",
+
+          notes: 'Being wrong is temporary. Staying wrong is optional.',
+        },
+
+        {
+          title: 'Schedule Thinking',
+
+          description: 'Reserve time to reflect, review and plan.',
+
+          notes:
+            "Elite performers don't only schedule tasks. They schedule thinking.",
+        },
+
+        {
+          title: 'Think in Systems',
+
+          description: 'Look for incentives, constraints and feedback loops.',
+
+          notes: 'Most problems are symptoms of systems.',
+        },
+
+        {
+          title: 'Study How to Think',
+
+          description: 'Invest in reasoning, logic and decision making.',
+
+          notes: 'Better thinking improves every future decision.',
+        },
+
+        {
+          title: 'Design Your Environment',
+
+          description: 'Reduce reliance on willpower.',
+
+          notes: 'Make good actions easy and bad actions difficult.',
+        },
+
+        {
+          title: 'Iterate Relentlessly',
+
+          description: 'Version 1 is supposed to be imperfect.',
+
+          notes: 'Progress belongs to those who improve continuously.',
+        },
+      ];
+
+      const quotes = [
+        'The process creates the results.',
+
+        'Feedback is fuel.',
+
+        'Clarity comes from action.',
+
+        'Deep work compounds.',
+
+        'Curiosity beats talent.',
+
+        'Consistency beats intensity.',
+
+        'Systems outperform goals.',
+
+        'Think better, then act better.',
+      ];
+
+      let index = 0;
+
+      function render() {
+        const p = principles[index];
+
+        number.innerText = `${index + 1}`;
+
+        title.innerText = p.title;
+
+        description.innerText = p.description;
+
+        notes.textContent = p.notes;
+
+        counter.innerText = `${index + 1} / ${principles.length}`;
+
+        bar.style.width = ((index + 1) / principles.length) * 100 + '%';
+
+        quote.innerText = quotes[index % quotes.length];
+      }
+
+      function next() {
+        index = (index + 1) % principles.length;
+
+        render();
+      }
+
+      function previous() {
+        index = (index - 1 + principles.length) % principles.length;
+
+        render();
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') next();
+
+        if (e.key === 'ArrowLeft') previous();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
