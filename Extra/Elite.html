@@ -62,6 +62,10 @@
         background: #4ea3ff;
         transition: 0.4s;
       }
+      #previousbtn {
+        transform: scaleX(-1);
+        font-weight: bold;
+      }
 
       .card {
         background: #17191f;
@@ -83,16 +87,17 @@
 
       .number {
         font-size: 0.9rem;
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.8);
         display: flex;
         top: 1rem;
         right: 1rem;
         justify-content: center;
         align-items: center;
         border-radius: 100%;
-        background-color: rgb(43, 43, 59);
-        width: 2rem;
-        height: 2rem;
+        background: #20242c;
+
+        width: 2.2rem;
+        height: 2.2rem;
       }
       #holdnumber {
         position: relative;
@@ -103,7 +108,7 @@
       }
 
       .title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 18px;
       }
@@ -197,7 +202,7 @@
       </div>
 
       <div class="footer">
-        <button onclick="previous()">←</button>
+        <button onclick="previous()" id="previousbtn">→</button>
 
         <div id="holdnumber">
           <div class="number" id="number"></div>
