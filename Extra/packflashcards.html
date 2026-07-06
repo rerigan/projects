@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PackPact — Flashcards</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M85 13a7 7 0 1 1-6-6.5 5 5 0 0 0 6 6.5Z' fill='%23cdd9f0'/%3E%3Cpath d='M20 78 14 46 26 30 24 12 38 24 50 14 62 24 76 12 74 30 86 46 80 78 64 62 50 70 36 62Z' fill='%23f5b452'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0f1320;
+    --bg-grad: #161b30;
+    --surface: #1b2136;
+    --surface-hover: #232a44;
+    --border: #2b3252;
+    --text: #eceff7;
+    --text-dim: #9aa2c0;
+    --text-faint: #656d90;
+    --accent: #f5b452;
+    --accent-dim: #c98f3c;
+    --moon: #cdd9f0;
+    --danger: #e0616b;
+    --danger-dim: #b84b53;
+    --success: #7fd1a3;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 24px 60px -24px rgba(0,0,0,.65);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html, body{ height: 100%; }
+  body{
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(205,217,240,.05), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(245,180,82,.06), transparent 55%),
+      linear-gradient(180deg, var(--bg-grad), var(--bg) 40%);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    min-height: 100%;
+  }
+
+  h1, h2, h3{ font-family: var(--font-display); margin: 0; letter-spacing: -.01em; }
+
+  a{ color: inherit; }
+
+  ::selection{ background: rgba(245,180,82,.35); }
+
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  button{ font-family: inherit; }
+
+  .app{ max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Topbar */
+  .topbar{
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 28px 0 8px;
+  }
+  .brand{ display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .brand-mark{ width: 38px; height: 38px; flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(245,180,82,.25)); }
+  .brand-text{ text-align: left; }
+  .brand-name{ font-size: 22px; font-weight: 600; color: var(--text); }
+  .brand-tagline{ display:block; font-size: 12px; color: var(--text-faint); font-family: var(--font-body); margin-top: 1px; }
+
+  /* Buttons */
+  .btn{
+    display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+    border-radius: var(--radius-sm); border: 1px solid transparent; cursor: pointer;
+    font-weight: 600; font-size: 14px; padding: 10px 18px; transition: transform .12s ease, background .15s ease, border-color .15s ease;
+    white-space: nowrap;
+  }
+  .btn:active{ transform: scale(.97); }
+  .btn--primary{ background: var(--accent); color: #241505; }
+  .btn--primary:hover{ background: #ffc06b; }
+  .btn--ghost{ background: transparent; color: var(--text); border-color: var(--border); }
+  .btn--ghost:hover{ background: var(--surface-hover); }
+  .btn--danger{ background: var(--danger); color: #2a0a0d; }
+  .btn--danger:hover{ background: #ea7a83; }
+  .btn--subtle{ background: var(--surface); color: var(--text-dim); border-color: var(--border); }
+  .btn--subtle:hover{ background: var(--surface-hover); color: var(--text); }
+  .btn--icon{ padding: 8px; border-radius: var(--radius-sm); background: transparent; border: 1px solid transparent; color: var(--text-faint); }
+  .btn--icon:hover{ background: var(--surface-hover); color: var(--text); }
+  .btn:disabled{ opacity: .4; cursor: not-allowed; }
+  .btn:disabled:hover{ background: inherit; }
+  .btn svg{ width: 16px; height: 16px; }
+
+  /* Views */
+  .view{ animation: fadeUp .35s ease; }
+  @keyframes fadeUp{ from{ opacity: 0; transform: translateY(6px);} to{ opacity: 1; transform: translateY(0);} }
+
+  .view-header{ display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 12px 0 20px; flex-wrap: wrap; }
+  .view-header h2{ font-size: 26px; font-weight: 600; }
+  .view-header .eyebrow{ display:block; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-faint); font-family: var(--font-body); margin-bottom: 4px; }
+
+  /* Random banner */
+  .random-banner{
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    background: linear-gradient(135deg, rgba(245,180,82,.14), rgba(205,217,240,.05));
+    border: 1px solid rgba(245,180,82,.3); border-radius: var(--radius-lg);
+    padding: 22px 26px; margin-bottom: 28px;
+  }
+  .random-banner__text h3{ font-size: 19px; margin-bottom: 4px; }
+  .random-banner__text p{ margin: 0; color: var(--text-dim); font-size: 14px; }
+
+  /* Pack grid */
+  .pack-grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .pack-tile{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow);
+  }
+  .pack-tile__name{ font-size: 17px; font-weight: 700; font-family: var(--font-display); word-break: break-word; }
+  .pack-tile__count{ font-size: 13px; color: var(--text-faint); }
+  .pack-tile__actions{ display: flex; align-items: center; gap: 8px; margin-top: auto; }
+  .pack-tile__actions .btn--primary{ flex: 1; }
+
+  .new-pack-tile{
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    border: 1.5px dashed var(--border); border-radius: var(--radius-lg); min-height: 140px;
+    background: transparent; color: var(--text-dim); cursor: pointer; font-weight: 600; font-size: 14px;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .new-pack-tile:hover{ border-color: var(--accent-dim); color: var(--accent); background: rgba(245,180,82,.05); }
+  .new-pack-tile svg{ width: 26px; height: 26px; }
+
+  /* Empty state */
+  .empty-state{
+    text-align: center; padding: 60px 20px; color: var(--text-dim);
+    border: 1px dashed var(--border); border-radius: var(--radius-lg); background: rgba(255,255,255,.015);
+  }
+  .empty-state h3{ color: var(--text); font-size: 20px; margin-bottom: 8px; }
+  .empty-state p{ margin: 0 0 18px; font-size: 14px; }
+
+  /* Manage view */
+  .card-list{ display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .card-list__item{
+    display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px;
+  }
+  .card-list__content{ flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card-list__label{ display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); margin-bottom: 3px; }
+  .card-list__value{ font-size: 14px; color: var(--text); overflow-wrap: anywhere; white-space: pre-wrap; }
+  .card-list__actions{ display: flex; gap: 4px; flex-shrink: 0; }
+
+  .card-form{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px;
+  }
+  .card-form h3{ font-size: 15px; margin-bottom: 14px; color: var(--text-dim); font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  .form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+  .form-field label{ display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-dim); }
+  .form-field textarea, .form-field input[type=text]{
+    width: 100%; resize: vertical; min-height: 72px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text); padding: 10px 12px; font-family: var(--font-body); font-size: 14px;
+  }
+  .form-field input[type=text]{ min-height: unset; resize: none; }
+  .form-field textarea:focus, .form-field input:focus{ border-color: var(--accent-dim); }
+  .card-form__footer{ display: flex; gap: 10px; align-items: center; }
+
+  .pack-title-row{ display: flex; align-items: center; gap: 10px; }
+  .pack-title-input{
+    font-family: var(--font-display); font-size: 26px; font-weight: 600; background: var(--surface);
+    border: 1px solid var(--accent-dim); border-radius: var(--radius-sm); color: var(--text); padding: 4px 10px;
+  }
+
+  /* Study view */
+  .study-wrap{ display: flex; flex-direction: column; align-items: center; gap: 22px; padding-top: 10px; }
+  .study-meta{ display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .study-meta__label{ font-size: 13px; color: var(--text-dim); font-weight: 600; }
+
+  .progress-ring{ width: 76px; height: 76px; }
+  .progress-ring__bg{ fill: none; stroke: var(--border); stroke-width: 6; }
+  .progress-ring__fill{ fill: none; stroke: var(--moon); stroke-width: 6; stroke-linecap: round; transform-origin: 50% 50%; transform: rotate(-90deg); transition: stroke-dashoffset .3s ease; }
+  .progress-ring__label{ font-family: var(--font-body); font-size: 20px; fill: var(--text); font-weight: 700; }
+
+  .study-card{ width: min(560px, 90vw); height: 320px; perspective: 1400px; cursor: pointer; }
+  .study-card__inner{
+    position: relative; width: 100%; height: 100%; transition: transform .5s cubic-bezier(.2,.7,.3,1); transform-style: preserve-3d;
+  }
+  .study-card.is-flipped .study-card__inner{ transform: rotateY(180deg); }
+  .study-card__face{
+    position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius-lg);
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    padding: 32px; gap: 14px;
+  }
+  .study-card__face--back{ transform: rotateY(180deg); background: linear-gradient(160deg, var(--surface), #202744); }
+  .study-card__label{ font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .study-card__source{ position: absolute; top: 14px; right: 16px; font-size: 11px; color: var(--text-faint); background: rgba(255,255,255,.04); padding: 3px 9px; border-radius: 20px; }
+  .study-card__text{ font-family: var(--font-display); font-size: clamp(19px, 3vw, 26px); font-weight: 500; color: var(--text); margin: 0; max-height: 190px; overflow-y: auto; }
+  .study-card__hint{ font-size: 12px; color: var(--text-faint); }
+
+  .study-controls{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+  .completion{
+    width: min(560px, 90vw); min-height: 320px; border-radius: var(--radius-lg); background: var(--surface);
+    border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; gap: 14px; padding: 32px;
+  }
+  .completion .brand-mark{ width: 46px; height: 46px; }
+  .completion h3{ font-size: 22px; }
+  .completion p{ color: var(--text-dim); margin: 0; font-size: 14px; }
+  .completion .study-controls{ margin-top: 8px; }
+
+  /* Modal */
+  .modal-overlay{
+    position: fixed; inset: 0; background: rgba(6,8,16,.72); backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 50;
+    animation: fadeUp .2s ease;
+  }
+  .modal{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    width: 100%; max-width: 440px; box-shadow: var(--shadow); padding: 26px;
+  }
+  .modal h3{ font-size: 19px; margin-bottom: 6px; }
+  .modal p.modal-sub{ color: var(--text-dim); font-size: 13px; margin: 0 0 18px; }
+  .modal__footer{ display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+  .pack-picker{ display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; margin-bottom: 6px; }
+  .pack-picker__row{
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); background: var(--bg); cursor: pointer;
+  }
+  .pack-picker__row input{ width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
+  .pack-picker__row span.name{ flex: 1; font-size: 14px; }
+  .pack-picker__row span.count{ font-size: 12px; color: var(--text-faint); }
+  .pack-picker__toggle-all{ background: none; border: none; color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; padding: 4px 0; margin-bottom: 10px; }
+
+  /* Toast */
+  .toast{
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    padding: 12px 20px; border-radius: 999px; font-size: 13px; box-shadow: var(--shadow); z-index: 100;
+    animation: toastIn .25s ease;
+  }
+  @keyframes toastIn{ from{ opacity:0; transform: translateX(-50%) translateY(8px);} to{ opacity:1; transform: translateX(-50%) translateY(0);} }
+
+  .inline-note{ font-size: 13px; color: var(--danger); margin: 10px 0 0; }
+  .visually-hidden{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+  @media (max-width: 640px){
+    .form-row{ grid-template-columns: 1fr; }
+    .card-list__content{ grid-template-columns: 1fr; }
+    .topbar{ flex-wrap: wrap; }
+    .study-card{ height: 280px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button class="brand" id="brandBtn" aria-label="Go to dashboard">
+      <svg class="brand-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M85 13a7 7 0 1 1-6-6.5 5 5 0 0 0 6 6.5Z" fill="var(--moon)"/>
+        <path d="M20 78 14 46 26 30 24 12 38 24 50 14 62 24 76 12 74 30 86 46 80 78 64 62 50 70 36 62Z" fill="var(--accent)"/>
+        <circle cx="41" cy="46" r="3" fill="var(--bg)"/>
+        <circle cx="59" cy="46" r="3" fill="var(--bg)"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">PackPact</span>
+        <span class="brand-tagline">Study with your pack.</span>
+      </span>
+    </button>
+    <div id="topbarActions"></div>
+  </header>
+
+  <main id="view-dashboard" class="view"></main>
+  <main id="view-manage" class="view" hidden></main>
+  <main id="view-study" class="view" hidden></main>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+<input type="file" id="importFileInput" accept="application/json,.json" class="visually-hidden" />
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "packpact-data-v1";
+
+  /* ---------- State ---------- */
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return { packs: [] };
+      var parsed = JSON.parse(raw);
+      if(!parsed || !Array.isArray(parsed.packs)) return { packs: [] };
+      return parsed;
+    }catch(e){
+      console.error("PackPact: could not read saved data", e);
+      return { packs: [] };
+    }
+  }
+
+  function saveState(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }catch(e){
+      console.error("PackPact: could not save data", e);
+      showToast("Could not save — storage may be full or disabled in this browser.");
+    }
+  }
+
+  var state = loadState();
+  var editingCardId = null;
+  var study = null; // { deck: [{front,back,packName}], index, flipped, mixed, label }
+
+  function uid(prefix){
+    return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,8);
+  }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];
+    });
+  }
+
+  function getPack(id){
+    for(var i=0;i<state.packs.length;i++){ if(state.packs[i].id === id) return state.packs[i]; }
+    return null;
+  }
+
+  /* ---------- View switching ---------- */
+  var views = {
+    dashboard: document.getElementById("view-dashboard"),
+    manage: document.getElementById("view-manage"),
+    study: document.getElementById("view-study")
+  };
+  var topbarActions = document.getElementById("topbarActions");
+
+  function showView(name){
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== name); });
+    if(name === "dashboard"){
+      topbarActions.innerHTML =
+        '<div style="display:flex;gap:8px;align-items:center;">' +
+          '<button class="btn btn--icon" id="btnExport" aria-label="Export your packs" title="Export packs to a file">' + iconDownload() + "</button>" +
+          '<button class="btn btn--icon" id="btnImport" aria-label="Import packs" title="Import packs from a file">' + iconUpload() + "</button>" +
+          '<button class="btn btn--primary" id="btnNewPack">' + iconPlus() + " New pack</button>" +
+        "</div>";
+      document.getElementById("btnNewPack").addEventListener("click", openNewPackModal);
+      document.getElementById("btnExport").addEventListener("click", exportData);
+      document.getElementById("btnImport").addEventListener("click", function(){ document.getElementById("importFileInput").click(); });
+    } else if(name === "manage"){
+      topbarActions.innerHTML = '<button class="btn btn--ghost" id="btnBackDash">' + iconBack() + " Dens</button>";
+      document.getElementById("btnBackDash").addEventListener("click", function(){ study=null; renderDashboard(); showView("dashboard"); });
+    } else {
+      topbarActions.innerHTML = '<button class="btn btn--ghost" id="btnExitStudy">' + iconBack() + " Exit</button>";
+      document.getElementById("btnExitStudy").addEventListener("click", function(){ study=null; renderDashboard(); showView("dashboard"); });
+    }
+  }
+
+  /* ---------- Icons ---------- */
+  function iconPlus(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'; }
+  function iconBack(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>'; }
+  function iconEdit(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>'; }
+  function iconTrash(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>'; }
+  function iconShuffle(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>'; }
+  function iconMoon(){ return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/></svg>'; }
+  function iconDownload(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>'; }
+  function iconUpload(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M7 14l5-5 5 5"/><path d="M5 3h14"/></svg>'; }
+
+  /* ---------- Toast ---------- */
+  var toastTimer = null;
+  function showToast(msg){
+    var root = document.getElementById("toastRoot");
+    root.innerHTML = '<div class="toast">' + escapeHtml(msg) + "</div>";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ root.innerHTML = ""; }, 3200);
+  }
+
+  /* ---------- Modal helpers ---------- */
+  var modalRoot = document.getElementById("modalRoot");
+  function closeModal(){ modalRoot.innerHTML = ""; document.removeEventListener("keydown", modalEscHandler); }
+  function modalEscHandler(e){ if(e.key === "Escape") closeModal(); }
+  function openModal(html){
+    modalRoot.innerHTML = '<div class="modal-overlay" id="modalOverlay"><div class="modal" role="dialog" aria-modal="true">' + html + "</div></div>";
+    document.getElementById("modalOverlay").addEventListener("click", function(e){ if(e.target.id === "modalOverlay") closeModal(); });
+    document.addEventListener("keydown", modalEscHandler);
+  }
+
+  function openConfirm(title, message, confirmLabel, onConfirm){
+    openModal(
+      "<h3>" + escapeHtml(title) + "</h3>" +
+      '<p class="modal-sub">' + escapeHtml(message) + "</p>" +
+      '<div class="modal__footer">' +
+        '<button class="btn btn--ghost" id="cfCancel">Cancel</button>' +
+        '<button class="btn btn--danger" id="cfConfirm">' + escapeHtml(confirmLabel) + "</button>" +
+      "</div>"
+    );
+    document.getElementById("cfCancel").addEventListener("click", closeModal);
+    document.getElementById("cfConfirm").addEventListener("click", function(){ closeModal(); onConfirm(); });
+  }
+
+  /* ---------- Export / Import ---------- */
+  function exportData(){
+    if(state.packs.length === 0){ showToast("Nothing to export yet — add a pack first."); return; }
+    var payload = { app: "packpact", version: 1, exportedAt: new Date().toISOString(), packs: state.packs };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var stamp = new Date().toISOString().slice(0,10);
+    a.href = url;
+    a.download = "packpact-export-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    showToast("Exported " + state.packs.length + " pack" + (state.packs.length===1?"":"s") + " — save the file somewhere you can reach it from your phone.");
+  }
+
+  function normalizeImportedPacks(raw){
+    var list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.packs) ? raw.packs : null);
+    if(!list) return null;
+    var packs = [];
+    list.forEach(function(p){
+      if(!p || typeof p.name !== "string") return;
+      var cards = Array.isArray(p.cards) ? p.cards
+        .filter(function(c){ return c && typeof c.front === "string" && typeof c.back === "string"; })
+        .map(function(c){ return { id: uid("card"), front: c.front, back: c.back }; }) : [];
+      packs.push({ id: uid("pack"), name: p.name, cards: cards });
+    });
+    return packs;
+  }
+
+  function openImportConfirm(packs){
+    var totalCards = packs.reduce(function(s,p){ return s + p.cards.length; }, 0);
+    openModal(
+      "<h3>Import " + packs.length + " pack" + (packs.length===1?"":"s") + "</h3>" +
+      '<p class="modal-sub">' + totalCards + " card" + (totalCards===1?"":"s") + " total. Add them alongside what you already have, or wipe this device's library and replace it entirely.</p>" +
+      '<div class="modal__footer">' +
+        '<button class="btn btn--ghost" id="impCancel">Cancel</button>' +
+        '<button class="btn btn--subtle" id="impReplace">Replace all</button>' +
+        '<button class="btn btn--primary" id="impMerge">Merge in</button>' +
+      "</div>"
+    );
+    document.getElementById("impCancel").addEventListener("click", closeModal);
+    document.getElementById("impMerge").addEventListener("click", function(){
+      state.packs = state.packs.concat(packs);
+      saveState();
+      closeModal();
+      renderDashboard();
+      showToast("Imported " + packs.length + " pack" + (packs.length===1?"":"s"));
+    });
+    document.getElementById("impReplace").addEventListener("click", function(){
+      openConfirm("Replace everything?", "This deletes all packs and cards currently on this device, then loads the imported file instead. This can't be undone.", "Replace", function(){
+        state.packs = packs;
+        saveState();
+        renderDashboard();
+        showToast("Library replaced with import");
+      });
+    });
+  }
+
+  function openNewPackModal(){
+    openModal(
+      "<h3>Start a new pack</h3>" +
+      '<p class="modal-sub">Give this category a name. You can add cards right after.</p>' +
+      '<form id="newPackForm">' +
+        '<div class="form-field"><label for="newPackName">Pack name</label>' +
+        '<input type="text" id="newPackName" maxlength="60" placeholder="e.g. Spanish verbs" required autofocus /></div>' +
+        '<div class="modal__footer">' +
+          '<button type="button" class="btn btn--ghost" id="npCancel">Cancel</button>' +
+          '<button type="submit" class="btn btn--primary">Create pack</button>' +
+        "</div>" +
+      "</form>"
+    );
+    document.getElementById("npCancel").addEventListener("click", closeModal);
+    var form = document.getElementById("newPackForm");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("newPackName").value.trim();
+      if(!name) return;
+      var pack = { id: uid("pack"), name: name, cards: [] };
+      state.packs.push(pack);
+      saveState();
+      closeModal();
+      openManage(pack.id);
+    });
+  }
+
+  /* ---------- Dashboard ---------- */
+  function renderDashboard(){
+    var el = views.dashboard;
+    var packsWithCards = state.packs.filter(function(p){ return p.cards.length > 0; });
+    var totalCards = state.packs.reduce(function(sum,p){ return sum + p.cards.length; }, 0);
+
+    var randomBanner =
+      '<div class="random-banner">' +
+        '<div class="random-banner__text">' +
+          "<h3>" +  "&nbsp; Run with the whole pack</h3>" +
+          "<p>Mix cards from every pack, or pick a few, and study them shuffled together.</p>" +
+        "</div>" +
+        '<button class="btn btn--primary" id="btnRandomMode" ' + (totalCards === 0 ? "disabled" : "") + ">Random mode</button>" +
+      "</div>";
+
+    var body;
+    if(state.packs.length === 0){
+      body =
+        '<div class="empty-state">' +
+          "<h3>No packs yet</h3>" +
+          "<p>A pack is a category of cards — start one to begin building your deck.</p>" +
+          '<button class="btn btn--primary" id="btnEmptyNewPack">' + iconPlus() + " Start a pack</button>" +
+        "</div>";
+    } else {
+      var tiles = state.packs.map(function(p){
+        var count = p.cards.length;
+        return (
+          '<div class="pack-tile">' +
+            '<div><div class="pack-tile__name">' + escapeHtml(p.name) + "</div>" +
+            '<div class="pack-tile__count">' + count + (count === 1 ? " card" : " cards") + "</div></div>" +
+            '<div class="pack-tile__actions">' +
+              '<button class="btn btn--primary" data-action="study" data-id="' + p.id + '" ' + (count === 0 ? "disabled" : "") + ' title="' + (count === 0 ? "Add cards first" : "Study this pack") + '">Study</button>' +
+              '<button class="btn btn--icon" data-action="manage" data-id="' + p.id + '" aria-label="Manage ' + escapeHtml(p.name) + '" title="Manage cards">' + iconEdit() + "</button>" +
+              '<button class="btn btn--icon" data-action="delete-pack" data-id="' + p.id + '" aria-label="Delete ' + escapeHtml(p.name) + '" title="Delete pack">' + iconTrash() + "</button>" +
+            "</div>" +
+          "</div>"
+        );
+      }).join("");
+
+      body =
+        '<div class="pack-grid">' + tiles +
+          '<button class="new-pack-tile" id="btnGridNewPack">' + iconPlus() + "<span>New pack</span></button>" +
+        "</div>";
+    }
+
+    el.innerHTML =
+      '<div class="view-header"><div><span class="eyebrow">Your dens</span><h2>PackPact</h2></div></div>' +
+      randomBanner + body;
+
+    var randomBtn = document.getElementById("btnRandomMode");
+    if(randomBtn) randomBtn.addEventListener("click", openRandomModal);
+    var emptyBtn = document.getElementById("btnEmptyNewPack");
+    if(emptyBtn) emptyBtn.addEventListener("click", openNewPackModal);
+    var gridBtn = document.getElementById("btnGridNewPack");
+    if(gridBtn) gridBtn.addEventListener("click", openNewPackModal);
+
+    el.querySelectorAll("[data-action]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var action = btn.getAttribute("data-action");
+        var id = btn.getAttribute("data-id");
+        if(action === "study"){
+          var pack = getPack(id);
+          if(pack) beginStudy(shuffle(pack.cards).map(function(c){ return { front:c.front, back:c.back, packName: pack.name }; }), pack.name, false);
+        } else if(action === "manage"){
+          openManage(id);
+        } else if(action === "delete-pack"){
+          var p2 = getPack(id);
+          if(!p2) return;
+          openConfirm("Delete " + p2.name + "?", "This removes " + p2.cards.length + " card" + (p2.cards.length===1?"":"s") + " permanently. This can't be undone.", "Delete pack", function(){
+            state.packs = state.packs.filter(function(pp){ return pp.id !== id; });
+            saveState();
+            renderDashboard();
+            showToast("Pack deleted");
+          });
+        }
+      });
+    });
+  }
+
+  /* ---------- Random mode modal ---------- */
+  function openRandomModal(){
+    var eligible = state.packs.filter(function(p){ return p.cards.length > 0; });
+    if(eligible.length === 0){
+      showToast("Add some cards first — no packs have any yet.");
+      return;
+    }
+    var rows = eligible.map(function(p){
+      return (
+        '<label class="pack-picker__row">' +
+          '<input type="checkbox" class="rp-check" value="' + p.id + '" checked />' +
+          '<span class="name">' + escapeHtml(p.name) + "</span>" +
+          '<span class="count">' + p.cards.length + "</span>" +
+        "</label>"
+      );
+    }).join("");
+
+    openModal(
+      "<h3>Mix packs</h3>" +
+      '<p class="modal-sub">Pick which packs join the mix. Cards are shuffled together.</p>' +
+      '<button type="button" class="pack-picker__toggle-all" id="rpToggleAll">Clear all</button>' +
+      '<div class="pack-picker">' + rows + "</div>" +
+      '<div class="modal__footer">' +
+        '<button class="btn btn--ghost" id="rpCancel">Cancel</button>' +
+        '<button class="btn btn--primary" id="rpStart">Start random study</button>' +
+      "</div>"
+    );
+
+    var checks = Array.prototype.slice.call(document.querySelectorAll(".rp-check"));
+    var toggleBtn = document.getElementById("rpToggleAll");
+    var allChecked = true;
+    toggleBtn.addEventListener("click", function(){
+      allChecked = !allChecked;
+      checks.forEach(function(c){ c.checked = allChecked; });
+      toggleBtn.textContent = allChecked ? "Clear all" : "Select all";
+    });
+
+    document.getElementById("rpCancel").addEventListener("click", closeModal);
+    document.getElementById("rpStart").addEventListener("click", function(){
+      var selectedIds = checks.filter(function(c){ return c.checked; }).map(function(c){ return c.value; });
+      if(selectedIds.length === 0){
+        showToast("Pick at least one pack to start.");
+        return;
+      }
+      var deck = [];
+      selectedIds.forEach(function(id){
+        var p = getPack(id);
+        if(p) p.cards.forEach(function(c){ deck.push({ front:c.front, back:c.back, packName:p.name }); });
+      });
+      if(deck.length === 0){ showToast("Those packs have no cards yet."); return; }
+      closeModal();
+      var label = selectedIds.length === state.packs.length ? "Random mix — all packs" : "Random mix — " + selectedIds.length + " packs";
+      beginStudy(shuffle(deck), label, true);
+    });
+  }
+
+  /* ---------- Manage view ---------- */
+  function openManage(packId){
+    editingCardId = null;
+    renderManage(packId);
+    showView("manage");
+  }
+
+  function renderManage(packId){
+    var pack = getPack(packId);
+    if(!pack){ renderDashboard(); showView("dashboard"); return; }
+    var el = views.manage;
+
+    var cardItems = pack.cards.length === 0 ? "" : pack.cards.map(function(c){
+      return (
+        '<div class="card-list__item">' +
+          '<div class="card-list__content">' +
+            '<div><span class="card-list__label">Front</span><div class="card-list__value">' + escapeHtml(c.front) + "</div></div>" +
+            '<div><span class="card-list__label">Back</span><div class="card-list__value">' + escapeHtml(c.back) + "</div></div>" +
+          "</div>" +
+          '<div class="card-list__actions">' +
+            '<button class="btn btn--icon" data-action="edit-card" data-id="' + c.id + '" aria-label="Edit card">' + iconEdit() + "</button>" +
+            '<button class="btn btn--icon" data-action="delete-card" data-id="' + c.id + '" aria-label="Delete card">' + iconTrash() + "</button>" +
+          "</div>" +
+        "</div>"
+      );
+    }).join("");
+
+    var editingCard = editingCardId ? pack.cards.filter(function(c){ return c.id === editingCardId; })[0] : null;
+
+    el.innerHTML =
+      '<div class="view-header">' +
+        '<div><span class="eyebrow">Manage pack</span>' +
+        '<div class="pack-title-row"><h2 id="packTitleDisplay">' + escapeHtml(pack.name) + '</h2>' +
+        '<button class="btn btn--icon" id="btnRenamePack" aria-label="Rename pack">' + iconEdit() + "</button></div></div>" +
+        '<button class="btn btn--primary" id="btnStudyThisPack" ' + (pack.cards.length===0 ? "disabled":"") + '>Study this pack</button>' +
+      "</div>" +
+      (pack.cards.length === 0 ? '<div class="empty-state" style="margin-bottom:24px;"><h3>This pack is empty</h3><p>Add your first card below to get started.</p></div>' : '<div class="card-list">' + cardItems + "</div>") +
+      '<div class="card-form">' +
+        "<h3>" + (editingCard ? "Edit card" : "Add a card") + "</h3>" +
+        '<form id="cardForm">' +
+          '<div class="form-row">' +
+            '<div class="form-field"><label for="cardFront">Front</label><textarea id="cardFront" required placeholder="Question or prompt">' + (editingCard ? escapeHtml(editingCard.front) : "") + "</textarea></div>" +
+            '<div class="form-field"><label for="cardBack">Back</label><textarea id="cardBack" required placeholder="Answer">' + (editingCard ? escapeHtml(editingCard.back) : "") + "</textarea></div>" +
+          "</div>" +
+          '<div class="card-form__footer">' +
+            '<button type="submit" class="btn btn--primary">' + (editingCard ? "Save changes" : "Add card") + "</button>" +
+            (editingCard ? '<button type="button" class="btn btn--ghost" id="cancelEditCard">Cancel</button>' : "") +
+          "</div>" +
+        "</form>" +
+      "</div>";
+
+    document.getElementById("btnRenamePack").addEventListener("click", function(){ startRenamePack(pack); });
+    var studyBtn = document.getElementById("btnStudyThisPack");
+    if(studyBtn) studyBtn.addEventListener("click", function(){
+      beginStudy(shuffle(pack.cards).map(function(c){ return { front:c.front, back:c.back, packName: pack.name }; }), pack.name, false);
+    });
+
+    el.querySelectorAll("[data-action]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var action = btn.getAttribute("data-action");
+        var id = btn.getAttribute("data-id");
+        if(action === "edit-card"){
+          editingCardId = id;
+          renderManage(packId);
+        } else if(action === "delete-card"){
+          openConfirm("Delete this card?", "This can't be undone.", "Delete card", function(){
+            pack.cards = pack.cards.filter(function(c){ return c.id !== id; });
+            saveState();
+            editingCardId = null;
+            renderManage(packId);
+          });
+        }
+      });
+    });
+
+    var cancelBtn = document.getElementById("cancelEditCard");
+    if(cancelBtn) cancelBtn.addEventListener("click", function(){ editingCardId = null; renderManage(packId); });
+
+    document.getElementById("cardForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      var front = document.getElementById("cardFront").value.trim();
+      var back = document.getElementById("cardBack").value.trim();
+      if(!front || !back) return;
+      if(editingCardId){
+        var c = pack.cards.filter(function(cc){ return cc.id === editingCardId; })[0];
+        if(c){ c.front = front; c.back = back; }
+        editingCardId = null;
+      } else {
+        pack.cards.push({ id: uid("card"), front: front, back: back });
+      }
+      saveState();
+      renderManage(packId);
+    });
+  }
+
+  function startRenamePack(pack){
+    var titleEl = document.getElementById("packTitleDisplay");
+    var input = document.createElement("input");
+    input.type = "text";
+    input.className = "pack-title-input";
+    input.value = pack.name;
+    input.maxLength = 60;
+    titleEl.replaceWith(input);
+    input.focus();
+    input.select();
+    function commit(){
+      var val = input.value.trim();
+      if(val) pack.name = val;
+      saveState();
+      renderManage(pack.id);
+    }
+    input.addEventListener("blur", commit);
+    input.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){ e.preventDefault(); commit(); }
+      if(e.key === "Escape"){ e.preventDefault(); renderManage(pack.id); }
+    });
+  }
+
+  /* ---------- Study view ---------- */
+  function beginStudy(deck, label, mixed){
+    study = { deck: deck, index: 0, flipped: false, label: label, mixed: mixed };
+    renderStudy();
+    showView("study");
+  }
+
+  function circumference(r){ return 2 * Math.PI * r; }
+
+  function renderStudy(){
+    var el = views.study;
+    if(!study || study.deck.length === 0){ renderDashboard(); showView("dashboard"); return; }
+
+    if(study.index >= study.deck.length){
+      el.innerHTML =
+        '<div class="study-wrap">' +
+          '<div class="completion">' +
+            '<svg class="brand-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+              '<path d="M85 13a7 7 0 1 1-6-6.5 5 5 0 0 0 6 6.5Z" fill="var(--moon)"/>' +
+              '<path d="M20 78 14 46 26 30 24 12 38 24 50 14 62 24 76 12 74 30 86 46 80 78 64 62 50 70 36 62Z" fill="var(--accent)"/>' +
+            "</svg>" +
+            "<h3>Pack complete</h3>" +
+            "<p>You made it through " + study.deck.length + " card" + (study.deck.length===1?"":"s") + " in " + escapeHtml(study.label) + ".</p>" +
+            '<div class="study-controls">' +
+              '<button class="btn btn--primary" id="btnRestart">Study again</button>' +
+              '<button class="btn btn--ghost" id="btnExit2">Back to dens</button>' +
+            "</div>" +
+          "</div>" +
+        "</div>";
+      document.getElementById("btnRestart").addEventListener("click", function(){
+        study.deck = shuffle(study.deck);
+        study.index = 0; study.flipped = false;
+        renderStudy();
+      });
+      document.getElementById("btnExit2").addEventListener("click", function(){ study=null; renderDashboard(); showView("dashboard"); });
+      return;
+    }
+
+    var current = study.deck[study.index];
+    var r = 34, c = circumference(r);
+    var progress = (study.index) / study.deck.length;
+    var offset = c * (1 - progress);
+
+    el.innerHTML =
+      '<div class="study-wrap">' +
+        '<div class="study-meta">' +
+          '<span class="study-meta__label">' + escapeHtml(study.label) + "</span>" +
+          '<svg class="progress-ring" viewBox="0 0 80 80">' +
+            '<circle class="progress-ring__bg" cx="40" cy="40" r="' + r + '"/>' +
+            '<circle class="progress-ring__fill" cx="40" cy="40" r="' + r + '" stroke-dasharray="' + c + '" stroke-dashoffset="' + offset + '"/>' +
+            '<text class="progress-ring__label" x="40" y="47" text-anchor="middle">' + (study.index+1) + "/" + study.deck.length + "</text>" +
+          "</svg>" +
+        "</div>" +
+        '<div class="study-card" id="studyCard" tabindex="0" role="button" aria-label="Flip card">' +
+          '<div class="study-card__inner">' +
+            '<div class="study-card__face study-card__face--front">' +
+              (study.mixed ? '<span class="study-card__source">' + escapeHtml(current.packName) + "</span>" : "") +
+              '<span class="study-card__label">Front</span>' +
+              '<p class="study-card__text">' + escapeHtml(current.front) + "</p>" +
+              '<span class="study-card__hint">Click or press space to flip</span>' +
+            "</div>" +
+            '<div class="study-card__face study-card__face--back">' +
+              '<span class="study-card__label">Back</span>' +
+              '<p class="study-card__text">' + escapeHtml(current.back) + "</p>" +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+        '<div class="study-controls">' +
+          '<button class="btn btn--ghost" id="btnPrev" ' + (study.index===0 ? "disabled":"") + ">Previous</button>" +
+          '<button class="btn btn--subtle" id="btnShuffle">' + iconShuffle() + " Shuffle</button>" +
+          '<button class="btn btn--primary" id="btnNext">' + (study.index === study.deck.length-1 ? "Finish" : "Next") + "</button>" +
+        "</div>" +
+      "</div>";
+
+    var cardEl = document.getElementById("studyCard");
+    function toggleFlip(){
+      study.flipped = !study.flipped;
+      cardEl.classList.toggle("is-flipped", study.flipped);
+    }
+    cardEl.addEventListener("click", toggleFlip);
+    cardEl.addEventListener("keydown", function(e){
+      if(e.key === " " || e.key === "Enter"){ e.preventDefault(); toggleFlip(); }
+    });
+
+    document.getElementById("btnNext").addEventListener("click", function(){
+      study.index++; study.flipped = false; renderStudy();
+    });
+    document.getElementById("btnPrev").addEventListener("click", function(){
+      if(study.index > 0){ study.index--; study.flipped = false; renderStudy(); }
+    });
+    document.getElementById("btnShuffle").addEventListener("click", function(){
+      var remaining = study.deck.slice(study.index);
+      var done = study.deck.slice(0, study.index);
+      study.deck = done.concat(shuffle(remaining));
+      study.flipped = false;
+      renderStudy();
+      showToast("Remaining cards shuffled");
+    });
+  }
+
+  document.addEventListener("keydown", function(e){
+    if(views.study.hidden || !study || study.index >= study.deck.length) return;
+    if(e.key === "ArrowRight"){ document.getElementById("btnNext").click(); }
+    if(e.key === "ArrowLeft"){ var p = document.getElementById("btnPrev"); if(p && !p.disabled) p.click(); }
+  });
+
+  /* ---------- Init ---------- */
+  document.getElementById("brandBtn").addEventListener("click", function(){ study=null; renderDashboard(); showView("dashboard"); });
+
+  document.getElementById("importFileInput").addEventListener("change", function(e){
+    var file = e.target.files[0];
+    e.target.value = "";
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      var parsed;
+      try{ parsed = JSON.parse(reader.result); }
+      catch(err){ showToast("That file isn't valid JSON."); return; }
+      var packs = normalizeImportedPacks(parsed);
+      if(!packs || packs.length === 0){ showToast("No packs found in that file."); return; }
+      openImportConfirm(packs);
+    };
+    reader.onerror = function(){ showToast("Could not read that file."); };
+    reader.readAsText(file);
+  });
+
+  renderDashboard();
+  showView("dashboard");
+})();
+</script>
+</body>
+</html>
