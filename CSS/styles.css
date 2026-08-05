@@ -23,7 +23,6 @@ header h1 {
   font-size: 2.5rem;
   color: rgba(255, 255, 255, 0.8);
   display: inline-block;
-  cursor: default;
 }
 #nome {
   animation-fill-mode: forwards;
@@ -39,8 +38,7 @@ header h1 {
 }
 
 header {
-  padding: 2rem;
-  padding-top: 5rem;
+  padding-top: 2rem;
   text-align: center;
 }
 
@@ -74,7 +72,6 @@ a {
   gap: 3rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
 }
 
 footer {
@@ -98,7 +95,7 @@ footer {
   opacity: 100%;
 }
 .orbit-card.star {
-  border:  1px solid rgb(255, 0, 0) !important;
+  border: 1px solid rgb(255, 0, 0) !important;
 }
 .orbit-card {
   position: relative;
@@ -147,7 +144,8 @@ footer {
   animation: hover 5s infinite ease-in-out;
 }
 
-#imgcard2, #imgcard3 {
+#imgcard2,
+#imgcard3 {
   object-fit: contain;
 }
 .orbit-card a {
